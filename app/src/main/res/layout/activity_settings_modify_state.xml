@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:orientation="vertical" >
+    
+	 <com.example.layoutdemo.TitleBar 
+        android:id="@+id/aha_tb_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+    </com.example.layoutdemo.TitleBar>
+    
+	 <!-- 备孕 -->
+	 <ImageView 
+	     android:id="@+id/ahsms_iv_prepared"
+	     android:layout_width="120dp"
+	     android:layout_height="120dp"
+	     android:layout_gravity="center_horizontal"
+	     android:src="@drawable/img_state_prepared"/>
+	 
+	 <TextView 
+	     android:layout_width="wrap_content"
+	     android:layout_height="wrap_content"
+	     android:text="备孕"
+	     android:textSize="20dp"
+	     android:layout_gravity="center_horizontal"
+	     android:layout_marginTop="10dp"/>
+	 
+	 <!-- 怀孕 -->
+	 <ImageView 
+	     android:id="@+id/ahsms_iv_pregnant"
+	     android:layout_width="120dp"
+	     android:layout_height="120dp"
+	     android:layout_gravity="center_horizontal"
+	     android:src="@drawable/img_state_pregnant"
+	     android:layout_marginTop="10dp"/>
+	 
+	 <TextView 
+	     android:layout_width="wrap_content"
+	     android:layout_height="wrap_content"
+	     android:text="怀孕"
+	     android:textSize="20dp"
+	     android:layout_gravity="center_horizontal"
+	     android:layout_marginTop="10dp"/>
+	 
+	 <!-- 育儿 -->
+	 <ImageView 
+	     android:id="@+id/ahsms_iv_baby"
+	     android:layout_width="120dp"
+	     android:layout_height="120dp"
+	     android:layout_gravity="center_horizontal"
+	     android:src="@drawable/img_state_baby"
+	     android:layout_marginTop="10dp"/>
+	 
+	 <TextView 
+	     android:layout_width="wrap_content"
+	     android:layout_height="wrap_content"
+	     android:text="育儿"
+	     android:textSize="20dp"
+	     android:layout_gravity="center_horizontal"
+	     android:layout_marginTop="10dp"/>
+</LinearLayout>

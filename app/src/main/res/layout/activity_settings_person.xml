@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:orientation="vertical" >
+    
+ <com.example.layoutdemo.TitleBar 
+        android:id="@+id/aha_tb_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+    </com.example.layoutdemo.TitleBar>
+    
+ <RelativeLayout 
+        android:layout_height="120dp"
+    	android:layout_width="match_parent"
+    	>
+        <ImageView 
+            android:id="@+id/ahsp_iv_headimg"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/headimg01"
+            />
+        <TextView 
+            android:id="@+id/ahsp_tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小猪"
+            android:textSize="25dp"
+            android:textColor="#9A9A9A"
+            android:layout_toRightOf="@+id/ahsp_iv_headimg"
+            android:layout_marginLeft="20dp"
+            android:layout_centerInParent="true"/>
+        
+    </RelativeLayout>
+    
+    <View 
+                	android:layout_height="10dp"
+					android:layout_width="fill_parent"
+					android:background="#F9E4DB"/>
+   
+    <!-- 性别 -->
+    
+            <RelativeLayout 
+                
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <TextView
+                    android:id="@+id/ahsp_tv_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="女"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    
+                    />
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+            <!-- 年龄 -->
+            <RelativeLayout 
+                
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年龄"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <TextView
+                    android:id="@+id/ahsp_tv_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    
+                    />
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+            <!-- 电话 -->
+            <RelativeLayout 
+                
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="电话"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <TextView
+                    android:id="@+id/ahsp_tv_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18251986780"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    
+                    />
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+            <!-- 出生年月 -->
+            <RelativeLayout 
+                
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生年月"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <TextView
+                    android:id="@+id/ahsp_tv_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1995-11-03"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    
+                    />
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+            <!-- 状态 -->
+            <RelativeLayout 
+                
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="状态"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <TextView
+                    android:id="@+id/ahsp_tv_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="育儿"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    
+                    />
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+</LinearLayout>

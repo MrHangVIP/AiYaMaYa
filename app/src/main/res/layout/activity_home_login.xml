@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:orientation="vertical" >
+
+    <include layout="@+id/title"/>
+
+    <ImageView
+        android:id="@+id/ahl_iv_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/ahl_tv_username"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="用户名"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/ahl_et_username"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:hint="请输入用户名"
+            android:textSize="20sp" 
+            android:background="#FFFAEA"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/ahl_tv_password"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="密　码"
+            android:textSize="20sp" 
+            />
+
+        <EditText
+            android:id="@+id/ahl_et_password"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:hint="请输入密码"
+            android:textSize="20sp"
+            android:background="#FFFAEA" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp" >
+
+        <TextView
+            android:id="@+id/ahl_tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="注册"
+            android:textColor="#33B5E5"
+            android:textStyle="italic" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ahl_bt_login"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFD8D3"
+        android:text="立即登录"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+</LinearLayout>

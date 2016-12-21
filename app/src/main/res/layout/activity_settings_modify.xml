@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:orientation="vertical" >
+    
+    <com.example.layoutdemo.TitleBar 
+        android:id="@+id/aha_tb_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+    </com.example.layoutdemo.TitleBar>
+    
+    <!-- 头像 -->
+    <RelativeLayout 
+        android:layout_height="wrap_content"
+    	android:layout_width="match_parent"
+    	>
+    	
+        <TextView 
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="头像"
+            android:textSize="35px"
+            android:textColor="#9A9A9A"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            />
+        <ImageView 
+            android:id="@+id/ahsm_iv_headimg"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/headimg01"
+            android:layout_marginRight="15dp"
+            />
+    </RelativeLayout>
+     <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+     
+     <!-- 用户名 -->
+      <RelativeLayout 
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <EditText 
+                    android:id="@+id/ahsm_et_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFAEA"
+                    android:text="请输入用户名"
+                    android:inputType="text"
+                    android:textSize="40px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15px"/>
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+           
+            <!-- 性别 -->
+            <RelativeLayout 
+                
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+
+                <RadioGroup 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true">
+                <RadioButton
+                    android:id="@+id/ahsm_radioButton_man"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/ahsm_radioButton_woman"
+                    android:text="男" 
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"/>
+                <RadioButton
+                    android:id="@+id/ahsm_radioButton_woman"
+                    android:layout_marginRight="15px"
+                    android:text="女" 
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"/>
+                </RadioGroup>
+                
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+            <!-- 年龄 -->
+            
+             <RelativeLayout 
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年龄"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <EditText 
+                    android:id="@+id/ahsm_et_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFAEA"
+                    android:text="请输入年龄"
+                    android:inputType="number"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15px"/>
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+            <!-- 电话 -->
+            
+            <RelativeLayout 
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="电话"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <EditText 
+                    android:id="@+id/ahsm_et_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFAEA"
+                    android:text="请输入电话号码"
+                    android:inputType="phone|none"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15px"/>
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+            <!-- 出生年月 -->
+            
+            <RelativeLayout 
+                android:layout_height="45dp" 
+                android:layout_width="fill_parent"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生年月"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    />
+                <TextView 
+                    android:id="@+id/ahsm_et_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFAEA"
+                    android:text="请选择"
+                    android:textSize="35px" 
+                    android:textColor="#9A9A9A"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15px"/>
+             </RelativeLayout>
+            <View 
+ 		    android:layout_height="1dp"
+			android:layout_width="fill_parent"
+			android:background="#A0A0A0"/>
+            
+            <!-- 状态 -->
+
+			<RelativeLayout
+			    android:layout_width="fill_parent"
+			    android:layout_height="45dp" >
+
+			    <TextView
+			        android:id="@+id/textView1"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_centerVertical="true"
+			        android:layout_marginLeft="15px"
+			        android:text="状态"
+			        android:textColor="#9A9A9A"
+			        android:textSize="35px" />
+
+			    <TextView
+			        android:id="@+id/ahsm_et_state"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignBaseline="@+id/textView1"
+			        android:layout_alignBottom="@+id/textView1"
+			        android:layout_alignParentRight="true"
+			        android:background="#FFFAEA"
+			        android:text="请选择"
+			        android:textColor="#9A9A9A"
+			        android:textSize="35px" />
+			</RelativeLayout>
+
+</LinearLayout>

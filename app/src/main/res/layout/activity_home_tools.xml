@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+     android:background="@drawable/img_main_bg">
+    
+ <com.example.layoutdemo.TitleBar 
+        android:id="@+id/aha_tb_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+    </com.example.layoutdemo.TitleBar>
+    
+ 
+ <LinearLayout 
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    >
+    
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+     
+  <!--<com.example.layoutdemo.CircleView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            circleView:roundedimageview_border_inside_color="#0f0"
+             circleView:roundedimageview_border_outside_color="#ccc"
+            >
+        </com.example.layoutdemo.CircleView>  -->
+      <ImageView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/baby"
+          android:layout_marginTop="25dp"
+          android:layout_marginLeft="25dp"/>
+      <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="健康测评"
+          android:textSize="15dp"
+          android:textColor="#555555"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="30dp"/>
+      <ImageView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/baby"
+          android:layout_marginTop="25dp"
+          android:layout_marginLeft="25dp"/>
+      <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="预产期计算"
+          android:textSize="15dp"
+          android:textColor="#555555"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="25dp"/>
+     
+   </LinearLayout>
+   
+    <!-- 第二竖排 -->
+    
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+     
+  <!--<com.example.layoutdemo.CircleView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            circleView:roundedimageview_border_inside_color="#0f0"
+             circleView:roundedimageview_border_outside_color="#ccc"
+            >
+        </com.example.layoutdemo.CircleView>  -->
+      <ImageView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/baby"
+          android:layout_marginTop="25dp"
+          android:layout_marginLeft="25dp"/>
+      <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="血型遗传"
+          android:textSize="15dp"
+          android:textColor="#555555"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="25dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baby"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"/>
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="星座宝宝"
+          android:textSize="15dp"
+          android:textColor="#555555"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="25dp"/>
+      
+   </LinearLayout>
+   
+    <!-- 第三竖排 -->
+    
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+     
+  <!--<com.example.layoutdemo.CircleView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            circleView:roundedimageview_border_inside_color="#0f0"
+             circleView:roundedimageview_border_outside_color="#ccc"
+            >
+        </com.example.layoutdemo.CircleView>  -->
+      <ImageView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/baby"
+          android:layout_marginTop="25dp"
+          android:layout_marginLeft="25dp"/>
+      <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="日  历"
+          android:textSize="15dp"
+          android:textColor="#555555"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="35dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baby"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"/>
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="身高预测"
+          android:textSize="15dp"
+          android:textColor="#555555"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="25dp"/>
+     
+   </LinearLayout>
+
+     
+ 
+</LinearLayout>
+</LinearLayout>

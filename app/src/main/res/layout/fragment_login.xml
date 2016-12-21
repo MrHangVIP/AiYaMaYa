@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/ll_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_login_white"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <!--android:background="@drawable/img_login_page_bg">-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_h"
+                android:drawableLeft="@drawable/img_close"
+                android:drawablePadding="10dp"
+                android:hint="@string/et_phone_number" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_check_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+
+            <EditText
+                android:id="@+id/et_check_code"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_h"
+                android:layout_weight="2.0"
+                android:drawableLeft="@drawable/img_close"
+                android:drawablePadding="10dp"
+                android:hint="@string/et_check_code" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_h"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/button_back"
+                android:text="@string/bt_get" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_h"
+                android:drawableLeft="@drawable/img_close"
+                android:drawablePadding="10dp"
+                android:hint="@string/et_write_pass" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_forget_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="right"
+            android:text="@string/tv_forget"
+            android:textColor="#1891AB"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/height_h"
+        android:layout_below="@id/ll_tab"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_back"
+        android:text="@string/bt_login" />
+
+
+</RelativeLayout>

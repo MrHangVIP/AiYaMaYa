@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:orientation="vertical" >
+
+    <com.example.layoutdemo.TitleBar
+        android:id="@+id/aha_tb_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+    </com.example.layoutdemo.TitleBar>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="平均月经周期"
+            android:textColor="#EF85A9"
+            android:textSize="20dp" />
+
+        <TextView
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" (天)"
+            android:textColor="#555555"
+            android:textSize="17dp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/atfour_et_days"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="请输入天数"
+        android:textColor="#CDCDCD"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFE3" >
+    </EditText>
+    
+    
+    <!-- 最后一次月经日期 -->
+
+    
+
+        <TextView
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最后一次月经日期"
+            android:textColor="#EF85A9"
+            android:textSize="20dp" />
+
+       
+    
+
+    <EditText
+        android:id="@+id/atfour_et_lastday"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFE3" >
+    </EditText>
+
+    <Button
+        android:id="@+id/atfour_btn_calculate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#EF85A9"
+        android:text="点击计算"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="查询结果"
+        android:textColor="#EF85A9"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="20dp"
+        android:background="#EF85A9" />
+	
+	
+    <TextView
+        android:id="@+id/atfour_tv_birthday"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您的预产期为：~"
+        android:textSize="20dp"
+        android:textColor="#555555" />
+    
+   
+	<View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="20dp"
+        android:background="#EF85A9" />
+    
+</LinearLayout>

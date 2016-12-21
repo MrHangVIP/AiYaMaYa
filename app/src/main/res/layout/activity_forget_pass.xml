@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/img_main_bg">
+
+
+    <include layout="@layout/toolbar" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_login_white"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_h"
+                android:drawableLeft="@drawable/img_close"
+                android:drawablePadding="10dp"
+                android:hint="@string/et_phone_number" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_check_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+
+            <EditText
+                android:id="@+id/et_check_code"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="2.0"
+                android:drawableLeft="@drawable/img_close"
+                android:drawablePadding="10dp"
+                android:hint="@string/et_check_code" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_h"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/button_back"
+                android:text="@string/bt_get" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_next"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/height_h"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_back"
+        android:text="@string/bt_next" />
+
+
+</LinearLayout>
+
+

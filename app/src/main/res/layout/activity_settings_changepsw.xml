@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:orientation="vertical" >
+    
+<com.example.layoutdemo.TitleBar 
+        android:id="@+id/aha_tb_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+    </com.example.layoutdemo.TitleBar>
+    
+<!-- 旧密码 -->
+<LinearLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="40dp"
+    android:gravity="center">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请输入旧密码："
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"/>
+    
+    <EditText 
+        android:id="@+id/ahsmp_ed_oldpsw"
+        android:layout_width="130dp"
+        android:layout_height="35dp"
+        android:text="123456"
+        android:textSize="25dp"
+        android:inputType="textPassword"
+        android:layout_marginLeft="20dp"
+        android:background="#FFFAEA"/>
+</LinearLayout>
+
+ 
+ 
+<!-- 新密码 -->
+
+<LinearLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="20dp"
+    android:gravity="center">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请输入新密码："
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"/>
+    
+    <EditText 
+        android:id="@+id/ahsmp_ed_newpsw"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:text="123456"
+        android:textSize="25dp"
+        android:inputType="textPassword"
+        android:layout_marginLeft="20dp"
+        android:background="#FFFAEA"/>
+</LinearLayout>
+
+<TextView 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="(密码判断提示)8位及8位以下字母、数字组合"
+     android:layout_marginLeft="20dp"
+     android:textColor="#E0572A"/>
+<!-- 确认密码 -->
+<LinearLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="20dp"
+    android:gravity="center">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请确认新密码："
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"/>
+    
+    <EditText 
+        android:id="@+id/ahsmp_ed_confirmpsw"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:text="123456"
+        android:textSize="25dp"
+        android:inputType="textPassword"
+        android:layout_marginLeft="20dp"
+        android:background="#FFFAEA"/>
+</LinearLayout>
+
+<LinearLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="30dp"
+    android:gravity="center">
+    
+    <Button 
+        android:id="@+id/ahsmp_btn_reset"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:text="重置"
+        android:textColor="#9A9A9A"
+        android:textSize="25dp"
+        android:background="#F9E4DB"
+        android:layout_marginLeft="40dp"/>
+    
+    <Button 
+        android:id="@+id/ahsmp_btn_ok"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:text="完成"
+        android:textColor="#9A9A9A"
+        android:textSize="25dp"
+        android:background="#F9E4DB"
+        android:layout_marginLeft="40dp"/>
+</LinearLayout>
+</LinearLayout>

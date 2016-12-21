@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:orientation="vertical" >
+
+    <com.example.layoutdemo.TitleBar
+        android:id="@+id/aha_tb_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+    </com.example.layoutdemo.TitleBar>
+
+  
+        <TextView
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="妈妈血型"
+            android:textColor="#EF85A9"
+            android:textSize="20dp" />
+
+        <LinearLayout 
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button 
+                android:id="@+id/attwo_btn_mother_A"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle"
+                android:text="A型"
+                android:textColor="#555555"
+                android:textSize="20dp"/>
+            <Button 
+                android:id="@+id/attwo_btn_mother_B"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+               android:background="@drawable/buttonstyle"
+                android:text="B型"
+                android:textColor="#555555"
+                android:textSize="20dp"/>
+            <Button 
+                android:id="@+id/attwo_btn_mother_AB"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle"
+                android:text="AB型"
+                android:textColor="#555555"
+                android:textSize="20dp"/>
+            <Button 
+                android:id="@+id/attwo_btn_mother_O"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle"
+                android:text="O型"
+                android:textColor="#555555"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+    
+    <!-- 爸爸血型 -->
+
+        <TextView
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="爸爸血型"
+            android:textColor="#EF85A9"
+            android:textSize="20dp" />
+
+    <LinearLayout 
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button 
+                android:id="@+id/attwo_btn_father_A"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle"
+                android:text="A型"
+                android:textColor="#555555"
+                android:textSize="20dp"/>
+            <Button 
+                android:id="@+id/attwo_btn_father_B"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle"
+                android:text="B型"
+                android:textColor="#555555"
+                android:textSize="20dp"/>
+            <Button 
+                android:id="@+id/attwo_btn_father_AB"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle"
+                android:text="AB型"
+                android:textColor="#555555"
+                android:textSize="20dp"/>
+            <Button 
+                android:id="@+id/attwo_btn_father_O"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle"
+                android:text="O型"
+                android:textColor="#555555"
+                android:textSize="20dp"/>
+        </LinearLayout>
+        
+  
+
+    <Button
+        android:id="@+id/attwo_btn_calculate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#EF85A9"
+        android:text="点击计算"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="查询结果"
+        android:textColor="#EF85A9"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="20dp"
+        android:background="#EF85A9" />
+	
+	 <TextView
+       
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="根据您和您配偶的血型可算出宝宝的血型。"
+        android:textSize="15dp"
+        android:textColor="#555555" />
+    <TextView
+        android:id="@+id/attwo_tv_possible"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="可能为：~"
+        android:textSize="18dp"
+        android:textColor="#555555" />
+    
+    <TextView
+        android:id="@+id/attwo_tv_impossible"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="不可能为：~"
+        android:textSize="18dp"
+        android:textColor="#555555" />
+	<View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="20dp"
+        android:background="#EF85A9" />
+    
+</LinearLayout>

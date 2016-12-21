@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/isc_iv_headimg"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/headimg01" />
+
+    <TextView
+        android:id="@+id/isc_tv_poster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/isc_iv_headimg"
+        android:text="评论人"
+        android:textColor="#333333"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/isc_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:text="2016-11-02 23:50"
+        android:textColor="#333333" />
+
+    <TextView
+        android:id="@+id/isc_tv_comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/isc_iv_headimg"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="用户发表评论内容。用户发表评论内容。用户发表评论内容。用户发表评论内容。用户发表评论内容。"
+        android:textColor="#333333"
+        android:textSize="20dp" />
+
+</RelativeLayout>
