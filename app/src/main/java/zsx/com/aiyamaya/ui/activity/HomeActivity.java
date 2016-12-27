@@ -52,11 +52,11 @@ public class HomeActivity extends BaseActivity {
                 break;
 
             case R.id.iv_shares:
-
+                jumpToNext(CommunicateActivity.class);
                 break;
 
             case R.id.iv_classical_article:
-
+                jumpToNext(ArticleActivity.class);
                 break;
 
             case R.id.iv_practical_tools:

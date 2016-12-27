@@ -5,11 +5,7 @@
     android:background="@drawable/img_main_bg"
     android:orientation="vertical" >
 
-    <com.example.layoutdemo.TitleBar
-        android:id="@+id/aha_tb_title"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp" >
-    </com.example.layoutdemo.TitleBar>
+   <include layout="@layout/toolbar"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -22,21 +18,21 @@
             android:layout_height="wrap_content"
             android:text="标题："
             android:textColor="#333333"
-            android:textSize="20dp" 
+            android:textSize="20dp"
             android:layout_marginLeft="10dp"/>
 
         <EditText
-            android:id="@+id/asp_tv_title"
+            android:id="@+id/awp_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="请输入标题"
-            android:textSize="20dp" 
+            android:textSize="20dp"
             android:textColor="#333333"
             android:background="#FFFAEA"/>
     </LinearLayout>
 
     <EditText
-        android:id="@+id/asp_tv_content"
+        android:id="@+id/awp_tv_content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -47,31 +43,31 @@
         android:textColor="#CDCDCD"
         android:textSize="20dp" >
 
-        
+
     </EditText>
 
     <View
-                android:id="@+id/view"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="50dp"
-                android:background="#A0A0A0" />
-    <ImageView 
-        android:id="@+id/asp_iv_postimg"
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="50dp"
+        android:background="#A0A0A0" />
+    <ImageView
+        android:id="@+id/awp_iv_postimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/headimg01"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"/>
-    
-   <!--   <TextView
-        android:id="@+id/asp_tx_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:text="(当前发帖时间)2016-11-03 14:20"
-        android:textColor="#333333"
-        android:textSize="20dp" />-->
+
+    <!--   <TextView
+         android:id="@+id/awp_tx_time"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="15dp"
+         android:layout_marginTop="30dp"
+         android:text="(当前发帖时间)2016-11-03 14:20"
+         android:textColor="#333333"
+         android:textSize="20dp" />-->
 
 </LinearLayout>

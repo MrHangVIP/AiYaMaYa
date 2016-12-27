@@ -17,13 +17,13 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     >
-    
-    <LinearLayout 
+
+    <LinearLayout
         android:orientation="vertical"
         android:layout_weight="1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-     
+
   <!--<com.example.layoutdemo.CircleView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -31,13 +31,13 @@
              circleView:roundedimageview_border_outside_color="#ccc"
             >
         </com.example.layoutdemo.CircleView>  -->
-      <ImageView 
+      <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:src="@drawable/baby"
           android:layout_marginTop="25dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
+      <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="备 孕"
@@ -45,13 +45,13 @@
           android:textColor="#555555"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="50dp"/>
-      <ImageView 
+      <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:src="@drawable/baby"
           android:layout_marginTop="25dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
+      <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="月子"
@@ -59,13 +59,13 @@
           android:textColor="#555555"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="50dp"/>
-      <ImageView 
+      <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:src="@drawable/baby"
           android:layout_marginTop="25dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
+      <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="1-3岁"
@@ -74,7 +74,7 @@
           android:layout_marginTop="10dp"
           android:layout_marginLeft="50dp"/>
    </LinearLayout>
-   
+
     <!-- 第二竖排 -->
     
     <LinearLayout 

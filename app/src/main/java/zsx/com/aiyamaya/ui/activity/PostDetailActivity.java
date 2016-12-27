@@ -12,15 +12,13 @@ import zsx.com.aiyamaya.util.ProgressDialogUtil;
 /**
  * Created by moram on 2016/9/22.
  */
-public class SettingActivity extends BaseActivity {
+public class PostDetailActivity extends BaseActivity {
 
-    private static final String TAG = "SettingActivity";
-
-    private TextView loginRegistTV;
+    private static final String TAG = "PostDetailActivity";
 
     @Override
     protected void setView() {
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_post_detail);
         ProgressDialogUtil.showProgressDialog(this,false);
         new Timer().schedule(new TimerTask() {
             @Override
@@ -32,8 +30,7 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void findViews() {
-        setTitle("设置");
-        loginRegistTV = (TextView) findViewById(R.id.tv_login_and_regist);
+        setTitle("帖子详情");
     }
 
     @Override
@@ -43,16 +40,12 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void setListener() {
-        loginRegistTV.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
 
-            case R.id.tv_login_and_regist:
-                jumpToNext(LoginActivity.class);
-                break;
         }
     }
 

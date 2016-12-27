@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/aspd_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="帖子标题："
+            android:textColor="#333333"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/aspd_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/aspd_tv"
+            android:text="xxxxxxxxxxxxxxx"
+            android:textColor="#333333"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/aspd_tv_likecount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/aspd_tv_title"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="21"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/aspd_iv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aspd_tv_title"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/aspd_tv_likecount"
+            android:src="@drawable/icon_like_selected" />
+
+        <TextView
+            android:id="@+id/aspd_tv_commentcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aspd_tv_title"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/aspd_iv_like"
+            android:text="10"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aspd_tv_title"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/aspd_tv_commentcount"
+            android:src="@drawable/icon_comments" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/aspd_tv_commentcount"
+            android:layout_marginTop="10dp"
+            android:background="#A0A0A0" />
+
+        <ImageView
+            android:id="@+id/aspd_iv_headimg"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/view"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/headimg01" />
+
+        <TextView
+            android:id="@+id/aspd_tv_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/aspd_iv_headimg"
+            android:text="发帖人"
+            android:textColor="#333333"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/aspd_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/view"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:text="2016-11-02 23:50"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/aspd_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aspd_iv_headimg"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="宝宝湿疹还是皮炎?宝湿疹还是皮还是皮炎?宝宝湿疹还是皮炎?宝湿疹还是皮还是皮炎?宝宝湿疹还是皮炎?宝湿疹还是皮还是皮炎?宝宝湿疹还是皮炎?宝湿疹还是皮还是皮炎?"
+            android:textColor="#333333"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/aspd_iv_postimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aspd_tv_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/headimg01" />
+
+        <ImageView
+            android:id="@+id/aspd_iv_dianzan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aspd_iv_postimg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_dianzan" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/aspd_iv_dianzan"
+            android:layout_marginTop="10dp"
+            android:background="#A0A0A0" />
+
+        <ListView
+            android:id="@+id/aspd_lv_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aspd_iv_dianzan"
+            android:layout_marginTop="40dp">
+
+        </ListView>
+    </RelativeLayout>
+
+
+</LinearLayout>

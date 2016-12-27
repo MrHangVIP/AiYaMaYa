@@ -32,6 +32,19 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="progress_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@color/trans_white</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <!--底部弹窗dialog动画-->
     <style name="AnimButton" parent="android:Animation">
         <item name="@android:windowEnterAnimation">@anim/slide_in_button</item>

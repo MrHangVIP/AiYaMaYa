@@ -13,4 +13,6 @@
     <color name="underline_content">#bfbfbf</color>
 
     <color name="text_red">#860c11</color>
+
+    <color name="dialog_bg">#88000000</color>
 </resources>
