@@ -8,7 +8,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.api.OkHttpHelp;
+import zsx.com.aiyamaya.item.ResultItem;
+import zsx.com.aiyamaya.listener.ResponseListener;
 
 
 /**
@@ -58,43 +64,27 @@ public class RegistFragment extends BaseFragment{
         switch(v.getId()){
 
             case R.id.bt_regist:
-//                EventBus.getDefault().post(new EventBusTest("hello"));
-//                String url="http://192.168.188.173:8080/ZSXBiShe/AddUserServlet";
-//                OkHttpClient client = new OkHttpClient();
-//                try {
-//                    Log.e("tag",url);
-//                    String username=phoneNumberET.getText().toString();
-//                    String password=passwordET.getText().toString();
-//                    String age=checkCodeET.getText().toString();
-//                    RequestBody formBody = new FormBody.Builder()
-//                            .add("userName",username)
-//                            .add("userPass",password)
-//                            .add("age",age)
-//                            .build();
-//                    Request request = new Request.Builder()
-//                            .url(url)
-//                            .post(formBody)
-//                            .header("User-Agent", "OkHttp Headers.java")
-//                            .addHeader("Accept", "application/json; q=0.5")
-//                            .build();
-//
-//                    client.newCall(request).enqueue(new Callback() {
-//                        @Override
-//                        public void onFailure(Call call, IOException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        @Override
-//                        public void onResponse(Call call, Response response) throws IOException {
-//                            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-////                            Toast.makeText(getActivity(),"注册成功！",Toast.LENGTH_SHORT).show();
-//                            System.out.println(response.body().string());
-//                        }
-//                    });
-//                }catch (Exception e){
-//                    Log.e("tag","go");
-//                }
+                String username=phoneNumberET.getText().toString();
+                String userpass=passwordET.getText().toString();
+                Map<String,String> params=new HashMap<>();
+                params.put("userPhone",username);
+                params.put("userPass",userpass);
+                OkHttpHelp<ResultItem> httpHelp=OkHttpHelp.getInstance();
+                httpHelp.httpRequest("post", null, params, new ResponseListener<ResultItem>() {
+                    @Override
+                    public void onSuccess(ResultItem object) {
+                        if(object.getResult().equals("success")){
+                            toast("注册成功");
+                        }else{
+                            toast("注册失败");
+                        }
+                    }
 
+                    @Override
+                    public void onFailed(String message) {
+
+                    }
+                });
 
                 break;
 

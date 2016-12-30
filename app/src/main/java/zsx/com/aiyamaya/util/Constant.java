@@ -14,6 +14,8 @@ import zsx.com.aiyamaya.BaseApplication;
 public class Constant {
 
 
+    public static final String DEFAULT_URL="http://192.168.188.235:8080/ZSXBiShe/RegistUser";
+
 
     //获取屏幕的宽度
     public static int getScreenWidth(Context context) {
