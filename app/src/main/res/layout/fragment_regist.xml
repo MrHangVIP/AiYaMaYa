@@ -61,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_h"
                 android:drawablePadding="10dp"
+                android:password="true"
                 android:hint="@string/et_set_pass" />
 
         </LinearLayout>

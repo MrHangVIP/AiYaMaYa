@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:gravity="center"
+       android:textSize="20sp"
+       android:text="状态选择"/>
+
+    <!-- 备孕 -->
+
+    <TextView
+        android:id="@+id/ass_tv_prepared"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:text="备孕"
+        android:textSize="20sp"
+        android:drawableRight="@drawable/img_state_prepared"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"/>
+
+    <!-- 怀孕 -->
+
+    <TextView
+        android:id="@+id/ass_tv_pregnant"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:text="怀孕"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/img_state_pregnant"
+        android:layout_marginTop="10dp"/>
+
+    <!-- 育儿 -->
+
+    <TextView
+        android:id="@+id/ass_tv_baby"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:text="育儿"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/img_state_baby"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

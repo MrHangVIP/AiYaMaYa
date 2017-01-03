@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <zsx.com.aiyamaya.ui.widget.CircleImageView
+        android:id="@+id/lm_ci_headImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/img_loading_2"
+        app:civ_border_color="@color/underline_content"
+        app:civ_border_width="5dp"
+        android:layout_centerVertical="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/lm_ci_headImg"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lm_tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/lm_tv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="状态"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/img_right_arrow"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

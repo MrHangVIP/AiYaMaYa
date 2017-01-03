@@ -14,7 +14,18 @@ import zsx.com.aiyamaya.BaseApplication;
 public class Constant {
 
 
-    public static final String DEFAULT_URL="http://192.168.188.235:8080/ZSXBiShe/RegistUser";
+    public static final String DEFAULT_URL="http://192.168.188.235:8080/ZSXBiShe";
+
+
+
+    //-------本地sharedpreference的key开始----------
+
+    public static final String MUM_STATE="mun_state";
+
+    public static final String IS_LOGIN="is_login";
+
+    //-------本地sharedpreference的key结束----------
+
 
 
     //获取屏幕的宽度

@@ -14,6 +14,8 @@ import com.youth.banner.loader.ImageLoader;
 import java.util.ArrayList;
 
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.SpfUtil;
 
 public class GuideActivity extends BaseActivity {
     private static final String TAG = "GuideActivity";
@@ -94,7 +96,13 @@ public class GuideActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id._ag_iv_start:
-                goToNext(HomeActivity.class);
+                SpfUtil.saveBoolean(Constant.IS_LOGIN,false);
+                if(SpfUtil.getBoolean(Constant.IS_LOGIN,false)){
+                    goToNext(HomeActivity.class);
+                }else{
+                    goToNext(StateSelectActivity.class);
+                }
+
                 break;
 
         }

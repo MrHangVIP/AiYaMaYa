@@ -1,14 +1,11 @@
 package zsx.com.aiyamaya.api;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -27,7 +24,7 @@ import zsx.com.aiyamaya.util.MyUtil;
  * Created by moram on 2016/12/30.
  */
 
-public class OkHttpHelp<T> extends HttpSuper<T>  {
+public class OkHttpHelp<T>  {
 
     private static final String TAG = "OkHttpHelp";
 
@@ -57,6 +54,8 @@ public class OkHttpHelp<T> extends HttpSuper<T>  {
     public void httpRequest(String method, String url, Map<String, String> params, final ResponseListener<T> listener) {
         if(url==null){
             url= Constant.DEFAULT_URL;
+        }else{
+            url=Constant.DEFAULT_URL+"/"+url;
         }
         RequestBody formBody=null;
         if (params != null) {
@@ -85,16 +84,20 @@ public class OkHttpHelp<T> extends HttpSuper<T>  {
                         e.printStackTrace();
                         listener.onFailed(e.toString());
                     }
-
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().string());
-                            Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-                            T t = mGson.fromJson(response.body().string(), entityClass);
-                            listener.onSuccess(t);
-                        } catch (JSONException e) {
+                            Class<T> entityClass = listener.getEntityClass();
+                            final T t = mGson.fromJson(jsonObject.toString(), entityClass);
+                            MyUtil.runOnUI(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.onSuccess(t);
+                                }
+                            });
+                        } catch (final JSONException e) {
                             e.printStackTrace();
                             listener.onFailed(e.toString());
                         }

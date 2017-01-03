@@ -11,4 +11,10 @@ public interface ResponseListener<T> {
     void onSuccess(T object);
 
     void onFailed(String message);
+
+    /**
+     *
+     * @return 返回具体的泛型类型
+     */
+    Class<T> getEntityClass();
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg">
+
+    <include layout="@layout/toolbar"/>
+
+    <zsx.com.aiyamaya.ui.widget.CircleImageView
+        android:id="@+id/am_ci_headimg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/img_loading_2"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        app:civ_border_color="@color/underline_content"
+        app:civ_border_width="5dp"/>
+
+    <include layout="@layout/layout_myself_info"/>
+
+    <include layout="@layout/layout_myself_update_password"/>
+
+</LinearLayout>

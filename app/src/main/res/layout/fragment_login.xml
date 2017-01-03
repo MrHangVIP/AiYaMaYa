@@ -73,6 +73,7 @@
                 android:layout_height="@dimen/height_h"
                 android:drawableLeft="@drawable/img_close"
                 android:drawablePadding="10dp"
+                android:password="true"
                 android:hint="@string/et_write_pass" />
 
         </LinearLayout>

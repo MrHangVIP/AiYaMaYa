@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="20dp">
+
+    <zsx.com.aiyamaya.ui.widget.CircleImageView
+        android:id="@+id/iv_head"
+        android:layout_height="80dp"
+        android:layout_width="80dp"
+        android:src="@color/blue"
+        app:civ_border_color="@color/underline_content"
+        app:civ_border_width="5dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_login_and_regist"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/tv_login_and_regist"
+        android:textSize="20sp" />
+
+</RelativeLayout>

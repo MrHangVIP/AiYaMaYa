@@ -7,8 +7,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.api.OkHttpHelp;
+import zsx.com.aiyamaya.item.ResultItem;
+import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.ui.activity.ForgetPassActivity;
+import zsx.com.aiyamaya.ui.activity.LoginActivity;
+import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.SpfUtil;
 
 
 /**
@@ -57,46 +66,42 @@ public class LoginFragment extends BaseFragment{
         switch(v.getId()){
 
             case R.id.bt_login:
+                String username=phoneNumberET.getText().toString();
+                String userpass=passwordET.getText().toString();
+                Map<String,String> params=new HashMap<>();
+                params.put("userPhone",username);
+                params.put("userPass",userpass);
+                OkHttpHelp<ResultItem> httpHelp= OkHttpHelp.getInstance();
+                httpHelp.httpRequest("post", "LoginUser", params, new ResponseListener<ResultItem>() {
+                    @Override
+                    public void onSuccess(ResultItem object) {
+                        if(object.getResult().equals("success")){
+                            toast("登录成功！");
+                            getActivity().finish();
+                        }else{
+                            toast("用户名或密码错误");
+                            phoneNumberET.setText("");
+                            passwordET.setText("");
+                        }
+                    }
 
+                    @Override
+                    public void onFailed(String message) {
 
-//
-//                String url="http://192.168.188.173:8080/ZSXBiShe/";
-//                Retrofit retrofit = new Retrofit.Builder()
-//                        .baseUrl(url)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                GetUserListService service = retrofit.create(GetUserListService.class);
-//
-//                Map<String,Object> map=new HashMap<>();
-//                map.put("userName","aaa");
-//                Call<JsonArrayBean> call=service.getList("GetUserList",map);
-//                Log.e("tag",call.request().url().toString());
-//                //------------------------------- //同步请求，注意需要在子线程中
-////                try {
-////                    JsonArrayBean response = call.execute().body();
-////                } catch (IOException e) {
-////                    e.printStackTrace();
-////                }
-//                //------------------------------//异步请求
-//                call.enqueue(new Callback<JsonArrayBean>() {
-//                    @Override
-//                    public void onResponse(Call<JsonArrayBean> call, Response<JsonArrayBean> response) {
-//                        Log.e("tag", response.body().getList().toString());
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<JsonArrayBean> call, Throwable t) {
-//
-//                    }
-//                });
+                    }
 
+                    @Override
+                    public Class<ResultItem> getEntityClass() {
+                        return ResultItem.class;
+                    }
+                });
 
                 break;
 
 
             case R.id.tv_forget_pass:
                 jumpToNext(ForgetPassActivity.class);
+                getActivity().finish();
                 break;
         }
     }

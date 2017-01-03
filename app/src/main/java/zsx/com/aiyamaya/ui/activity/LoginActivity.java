@@ -47,7 +47,6 @@ public class LoginActivity extends BaseActivity  {
         titles.add("登录");
         titles.add("注册");
 
-
         viewPager.setPagingEnabled(false);
         homeAdapter = new LoginAdapter(getSupportFragmentManager(), fragments, titles);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
@@ -71,6 +70,11 @@ public class LoginActivity extends BaseActivity  {
                 finish();
                 break;
         }
+    }
+
+    public void tabFragment(){
+        TabLayout.Tab tab= tabLayout.getTabAt(0);
+        tab.select();
     }
 
 }

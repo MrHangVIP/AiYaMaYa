@@ -18,8 +18,9 @@
     <!--设置 页面 开始 -->
     <string name="tv_set">设置</string>
     <string name="tv_login_and_regist">登陆/注册</string>
-    <string name="tv_sjts">商家推送</string>
-    <string name="tv_jqfwt">景区服务台</string>
+    <string name="tv_mwts">美文推送</string>
+    <string name="tv_qhzh">切换账号</string>
+    <string name="tv_gywm">关于我们</string>
     <string name="tv_bbsj">版本升级</string>
     <string name="tv_version">V 1.0 Beta</string>
     <!-- 设置页面结束 -->

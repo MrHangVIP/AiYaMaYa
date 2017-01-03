@@ -15,6 +15,9 @@ import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ResultItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
+import zsx.com.aiyamaya.ui.activity.LoginActivity;
+import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.SpfUtil;
 
 
 /**
@@ -31,7 +34,6 @@ public class RegistFragment extends BaseFragment{
     @Override
     protected View getLayout(LayoutInflater inflater, ViewGroup container) {
         view=inflater.inflate(R.layout.fragment_regist,container,false);
-
         return view;
     }
 
@@ -69,20 +71,29 @@ public class RegistFragment extends BaseFragment{
                 Map<String,String> params=new HashMap<>();
                 params.put("userPhone",username);
                 params.put("userPass",userpass);
-                OkHttpHelp<ResultItem> httpHelp=OkHttpHelp.getInstance();
-                httpHelp.httpRequest("post", null, params, new ResponseListener<ResultItem>() {
+                params.put("status", SpfUtil.getString(Constant.MUM_STATE,"prepared"));
+                OkHttpHelp<ResultItem> httpHelp= OkHttpHelp.getInstance();
+                httpHelp.httpRequest("post", "RegistUser", params, new ResponseListener<ResultItem>() {
                     @Override
                     public void onSuccess(ResultItem object) {
                         if(object.getResult().equals("success")){
-                            toast("注册成功");
+                            toast("注册成功,请登录！");
+                            ((LoginActivity)getActivity()).tabFragment();
                         }else{
                             toast("注册失败");
+                            phoneNumberET.setText("");
+                            passwordET.setText("");
                         }
                     }
 
                     @Override
                     public void onFailed(String message) {
 
+                    }
+
+                    @Override
+                    public Class<ResultItem> getEntityClass() {
+                        return ResultItem.class;
                     }
                 });
 

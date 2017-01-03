@@ -11,11 +11,17 @@
         android:layout_height="50dp">
     </com.example.layoutdemo.TitleBar>
 
-    <RelativeLayout 
+    <View
+                	android:layout_height="10dp"
+					android:layout_width="fill_parent"
+					android:background="#F9E4DB"/>
+    
+     <!-- 个人信息 -->
+    <RelativeLayout
         android:layout_height="120dp"
     	android:layout_width="match_parent"
     	>
-        <ImageView 
+        <ImageView
             android:id="@+id/ahs_iv_headimg"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -23,7 +29,7 @@
             android:layout_centerInParent="true"
             android:src="@drawable/headimg01"
             />
-        <TextView 
+        <TextView
             android:id="@+id/ahs_tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +39,7 @@
             android:layout_toRightOf="@+id/ahs_iv_headimg"
             android:layout_marginLeft="20dp"
             android:layout_centerInParent="true"/>
-        <TextView 
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="简介：暂无简介"
@@ -43,14 +49,8 @@
             android:layout_marginLeft="20dp"
             android:layout_below="@+id/ahs_tv_username"/>
     </RelativeLayout>
-    
-    <View 
-                	android:layout_height="10dp"
-					android:layout_width="fill_parent"
-					android:background="#F9E4DB"/>
-    
-     <!-- 个人信息 -->
-            <RelativeLayout 
+
+    <RelativeLayout
                 android:id="@+id/ahs_relayout_person"
                 android:layout_height="45dp" 
                 android:layout_width="fill_parent"
@@ -253,41 +253,42 @@
 			android:background="#A0A0A0"/>
             
             <!-- 关于我们 -->
-            <RelativeLayout 
-                 android:id="@+id/ahs_relayout_aboutus"
-                android:layout_height="45dp" 
-                android:layout_width="fill_parent"
-                >
-                <ImageView 
-                    android:id="@+id/ahs_iv_icon06"
-		    	    android:src="@drawable/icon_settings_06"
-                    android:layout_height="36px"
-                    android:layout_width="36px"
-                    android:layout_marginLeft="10dp"
-                    android:layout_centerVertical="true"
-                    />
+    <RelativeLayout
+         android:id="@+id/ahs_relayout_aboutus"
+        android:layout_height="45dp"
+        android:layout_width="fill_parent"
+        >
+        <ImageView
+            android:id="@+id/ahs_iv_icon06"
+            android:src="@drawable/icon_settings_06"
+            android:layout_height="36px"
+            android:layout_width="36px"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="关于我们"
-                    android:textSize="35px" 
-                    android:textColor="#9A9A9A"
-                    android:layout_toRightOf="@+id/ahs_iv_icon06"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20px"
-                    />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于我们"
+            android:textSize="35px"
+            android:textColor="#9A9A9A"
+            android:layout_toRightOf="@+id/ahs_iv_icon06"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            />
 
-                <ImageView 
-                    android:src="@drawable/icon_settings_right"
-                    android:layout_height="30px"
-                    android:layout_width="30px"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    />
-                
-            </RelativeLayout>
-            <View 
+        <ImageView
+            android:src="@drawable/icon_settings_right"
+            android:layout_height="30px"
+            android:layout_width="30px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <View
  		    android:layout_height="1dp"
 			android:layout_width="fill_parent"
 			android:background="#A0A0A0"/>
