@@ -45,15 +45,15 @@ public class StateSelectActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ass_tv_prepared:
-                SpfUtil.saveString(Constant.MUM_STATE,"prepared");
+                SpfUtil.saveString(Constant.MUM_STATE,"备孕");
                 break;
 
             case R.id.ass_tv_pregnant:
-                SpfUtil.saveString(Constant.MUM_STATE,"pregnant");
+                SpfUtil.saveString(Constant.MUM_STATE,"怀孕");
                 break;
 
             case R.id.ass_tv_baby:
-                SpfUtil.saveString(Constant.MUM_STATE,"baby");
+                SpfUtil.saveString(Constant.MUM_STATE,"育儿");
                 break;
         }
         jumpToNext(HomeActivity.class);

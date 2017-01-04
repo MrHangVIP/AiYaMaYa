@@ -14,7 +14,7 @@ import zsx.com.aiyamaya.BaseApplication;
 public class Constant {
 
 
-    public static final String DEFAULT_URL="http://192.168.188.235:8080/ZSXBiShe";
+    public static final String DEFAULT_URL="http://192.168.188.244:8080/ZSXBiShe";
 
 
 

@@ -86,7 +86,10 @@ public class OkHttpHelp<T>  {
                     }
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                        if (!response.isSuccessful()) {
+                            listener.onFailed(response.toString());
+                            throw new IOException("Unexpected code " + response);
+                        }
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().string());
                             Class<T> entityClass = listener.getEntityClass();

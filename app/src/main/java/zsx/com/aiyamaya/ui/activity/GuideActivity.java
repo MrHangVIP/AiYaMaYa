@@ -96,7 +96,6 @@ public class GuideActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id._ag_iv_start:
-                SpfUtil.saveBoolean(Constant.IS_LOGIN,false);
                 if(SpfUtil.getBoolean(Constant.IS_LOGIN,false)){
                     goToNext(HomeActivity.class);
                 }else{

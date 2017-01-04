@@ -6,24 +6,36 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ResultItem;
+import zsx.com.aiyamaya.item.UserItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.ui.activity.ForgetPassActivity;
 import zsx.com.aiyamaya.ui.activity.LoginActivity;
+import zsx.com.aiyamaya.ui.activity.SettingActivity;
 import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.ProgressDialogUtil;
 import zsx.com.aiyamaya.util.SpfUtil;
+import zsx.com.aiyamaya.util.StringUtils;
 
 
 /**
  * Created by moram on 2016/9/21.
  */
-public class LoginFragment extends BaseFragment{
+public class LoginFragment extends BaseFragment {
 
     private static final String TAG = "LoginFragment";
     private View view;
@@ -33,10 +45,9 @@ public class LoginFragment extends BaseFragment{
     private Button loginBT;
 
 
-
     @Override
     protected View getLayout(LayoutInflater inflater, ViewGroup container) {
-        view=inflater.inflate(R.layout.fragment_login,container,false);
+        view = inflater.inflate(R.layout.fragment_login, container, false);
 
         return view;
     }
@@ -48,10 +59,10 @@ public class LoginFragment extends BaseFragment{
 
     @Override
     protected void initView(View view) {
-        phoneNumberET=(EditText)view.findViewById(R.id.et_username);
-        passwordET=(EditText)view.findViewById(R.id.et_password);
-        frogetPassTV=(TextView)view.findViewById(R.id.tv_forget_pass);
-        loginBT=(Button)view.findViewById(R.id.bt_login);
+        phoneNumberET = (EditText) view.findViewById(R.id.et_username);
+        passwordET = (EditText) view.findViewById(R.id.et_password);
+        frogetPassTV = (TextView) view.findViewById(R.id.tv_forget_pass);
+        loginBT = (Button) view.findViewById(R.id.bt_login);
     }
 
     @Override
@@ -63,31 +74,53 @@ public class LoginFragment extends BaseFragment{
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
 
             case R.id.bt_login:
-                String username=phoneNumberET.getText().toString();
-                String userpass=passwordET.getText().toString();
-                Map<String,String> params=new HashMap<>();
-                params.put("userPhone",username);
-                params.put("userPass",userpass);
-                OkHttpHelp<ResultItem> httpHelp= OkHttpHelp.getInstance();
+                String username = phoneNumberET.getText().toString();
+                String userpass = passwordET.getText().toString();
+                if (!StringUtils.isMobile(username)) {
+                    toast("请输入正确的手机号");
+                    loginFail();
+                    break;
+                }
+
+                if (userpass.length() < 8) {
+                    toast("密码长度不能地域8位");
+                    loginFail();
+                    break;
+                }
+                ProgressDialogUtil.showProgressDialog(getActivity(), true);
+                Map<String, String> params = new HashMap<>();
+                params.put("userPhone", username);
+                params.put("userPass", userpass);
+                OkHttpHelp<ResultItem> httpHelp = OkHttpHelp.getInstance();
                 httpHelp.httpRequest("post", "LoginUser", params, new ResponseListener<ResultItem>() {
                     @Override
                     public void onSuccess(ResultItem object) {
-                        if(object.getResult().equals("success")){
+                        ProgressDialogUtil.dismissProgressdialog();
+                        if (object.getResult().equals("success")) {
                             toast("登录成功！");
+                            JSONObject userJson = null;
+                            try {
+                                userJson = new JSONObject(object.getData());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            UserItem userItem = (new Gson()).fromJson(userJson.toString(), UserItem.class);
+                            BaseApplication.getAPPInstance().setmUser(userItem);
+                            SpfUtil.saveBoolean(Constant.IS_LOGIN, true);
+                            getActivity().setResult(SettingActivity.RESULT_LOGIN);
                             getActivity().finish();
-                        }else{
+                        } else {
                             toast("用户名或密码错误");
-                            phoneNumberET.setText("");
-                            passwordET.setText("");
+                            loginFail();
                         }
                     }
 
                     @Override
                     public void onFailed(String message) {
-
+                        ProgressDialogUtil.dismissProgressdialog();
                     }
 
                     @Override
@@ -104,6 +137,12 @@ public class LoginFragment extends BaseFragment{
                 getActivity().finish();
                 break;
         }
+    }
+
+    private void loginFail() {
+        phoneNumberET.setText("");
+        phoneNumberET.requestFocus();
+        passwordET.setText("");
     }
 
 }

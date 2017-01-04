@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +20,9 @@ import zsx.com.aiyamaya.item.ResultItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.ui.activity.LoginActivity;
 import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.ProgressDialogUtil;
 import zsx.com.aiyamaya.util.SpfUtil;
+import zsx.com.aiyamaya.util.StringUtils;
 
 
 /**
@@ -66,8 +71,21 @@ public class RegistFragment extends BaseFragment{
         switch(v.getId()){
 
             case R.id.bt_regist:
+
                 String username=phoneNumberET.getText().toString();
                 String userpass=passwordET.getText().toString();
+                if (!StringUtils.isMobile(username)) {
+                    toast("请输入正确的手机号");
+                    registFail();
+                    break;
+                }
+
+                if (userpass.length() < 8) {
+                    toast("密码长度不能地域8位");
+                    registFail();
+                    break;
+                }
+                ProgressDialogUtil.showProgressDialog(getActivity(),true);
                 Map<String,String> params=new HashMap<>();
                 params.put("userPhone",username);
                 params.put("userPass",userpass);
@@ -76,19 +94,23 @@ public class RegistFragment extends BaseFragment{
                 httpHelp.httpRequest("post", "RegistUser", params, new ResponseListener<ResultItem>() {
                     @Override
                     public void onSuccess(ResultItem object) {
+                        ProgressDialogUtil.dismissProgressdialog();
                         if(object.getResult().equals("success")){
                             toast("注册成功,请登录！");
                             ((LoginActivity)getActivity()).tabFragment();
                         }else{
-                            toast("注册失败");
-                            phoneNumberET.setText("");
-                            passwordET.setText("");
+                            if(object.getData()!=null && object.getData().equals("exist")){
+                                toast("该手机已经注册请登录");
+                            }else{
+                                toast("注册失败");
+                            }
                         }
+                        registFail();
                     }
 
                     @Override
                     public void onFailed(String message) {
-
+                        ProgressDialogUtil.dismissProgressdialog();
                     }
 
                     @Override
@@ -105,4 +127,12 @@ public class RegistFragment extends BaseFragment{
 
         }
     }
+
+    private void registFail() {
+        phoneNumberET.setText("");
+        phoneNumberET.requestFocus();
+        passwordET.setText("");
+        checkCodeET.setText("");
+    }
+
 }

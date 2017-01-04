@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -18,15 +19,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
-            <EditText
-                android:id="@+id/et_username"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_h"
-                android:drawableLeft="@drawable/img_close"
-                android:drawablePadding="10dp"
-                android:hint="@string/et_phone_number" />
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
+                <EditText
+                    android:id="@+id/et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_h"
+                    android:inputType="phone"
+                    android:hint="@string/et_phone_number"
+                    />
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
@@ -66,15 +71,18 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                >
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_h"
-                android:drawableLeft="@drawable/img_close"
-                android:drawablePadding="10dp"
-                android:password="true"
+                android:inputType="textPassword"
                 android:hint="@string/et_write_pass" />
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
