@@ -1,9 +1,12 @@
 package zsx.com.aiyamaya.util;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -363,5 +366,33 @@ public class StringUtils {
 		}
 		return str;
 	}
+
+
+//	public static Map<String, Object> transBean2Map(Object obj) {
+//		if (obj == null) {
+//			return null;
+//		}
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		try {
+//			BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
+//			PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+//			for (PropertyDescriptor property : propertyDescriptors) {
+//				String key = property.getName();
+//				// 过滤class属性
+//				if (!key.equals("class")) {
+//					// 得到property对应的getter方法
+//					Method getter = property.getReadMethod();
+//					Object value = getter.invoke(obj);
+//
+//					map.put(key, value);
+//				}
+//
+//			}
+//		} catch (Exception e) {
+//			MyUtil.MyLogE("transBean2Map Error {}" ,e.toString());
+//		}
+//		return map;
+//
+//	}
 
 }

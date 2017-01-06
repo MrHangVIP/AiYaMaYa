@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity  {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_close:
-                finish();
+                goToNext(SettingActivity.class);
                 break;
         }
     }
@@ -77,5 +77,9 @@ public class LoginActivity extends BaseActivity  {
         tab.select();
     }
 
+    @Override
+    public void onBackPressed() {
+        goToNext(SettingActivity.class);
+    }
 }
 

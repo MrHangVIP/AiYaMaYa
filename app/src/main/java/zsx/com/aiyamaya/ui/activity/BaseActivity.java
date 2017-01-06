@@ -15,7 +15,10 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 
+import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.util.MyUtil;
+import zsx.com.aiyamaya.util.SpfUtil;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
@@ -50,6 +53,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     }
 
+    public void cancelAction(View v){
+//        dismiss();
+//        cancel();
+    }
 
     private void setToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -202,10 +209,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         goToNext(mClass, null, resId);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        activityList.remove(this);
+    /**
+     * token失效
+     */
+    public void tokenError(){
+        BaseApplication.getAPPInstance().setmUser(null);
+        SpfUtil.clearAll();
+        goToNext(LoginActivity.class);
     }
 
     @Override
@@ -220,4 +230,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected abstract void initData();
 
     protected abstract void setListener();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyUtil.MyLogE(TAG,"onDestroy");
+        activityList.remove(this);
+    }
 }

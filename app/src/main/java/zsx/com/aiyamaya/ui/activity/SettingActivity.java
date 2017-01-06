@@ -7,15 +7,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.api.OkHttpHelp;
+import zsx.com.aiyamaya.item.ResultItem;
 import zsx.com.aiyamaya.item.UserItem;
+import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.ui.widget.CircleImageView;
 import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.MyUtil;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
 import zsx.com.aiyamaya.util.SpfUtil;
 
@@ -36,17 +46,9 @@ public class SettingActivity extends BaseActivity {
     private TextView stateTV;
     private LinearLayout rpUserLL;
 
-
     @Override
     protected void setView() {
         setContentView(R.layout.activity_setting);
-        ProgressDialogUtil.showProgressDialog(this,false);
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                ProgressDialogUtil.dismissProgressdialog();
-            }
-        },2000);
     }
 
     @Override
@@ -85,16 +87,19 @@ public class SettingActivity extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.tv_login_and_regist:
-                startActivityForResult(new Intent(SettingActivity.this,LoginActivity.class),100);
+//                startActivityForResult(new Intent(SettingActivity.this,LoginActivity.class),100);
+                goToNext(LoginActivity.class);
                 break;
 
             case R.id.as_ly_myself:
-                jumpToNext(MyselfActivity.class);
+                goToNext(MyselfActivity.class);
                 break;
 
             case R.id.asl_ll_replaceuser:
                 SpfUtil.clearAll();
-                startActivityForResult(new Intent(SettingActivity.this,LoginActivity.class),100);
+                BaseApplication.getAPPInstance().setmUser(null);
+                goToNext(LoginActivity.class);
+//                startActivityForResult(new Intent(SettingActivity.this,LoginActivity.class),100);
                 break;
         }
     }
@@ -119,15 +124,57 @@ public class SettingActivity extends BaseActivity {
             stateTV.setText(mUser.getStatus());
             if(mUser.getHeadUrl()!=null && !"".equals(mUser.getHeadUrl())){
                 Glide.with(SettingActivity.this)
-                        .load(mUser.getHeadUrl())
+                        .load(Constant.DEFAULT_URL+Constant.IMAGE_URL+mUser.getHeadUrl())
+//                        .placeholder(R.drawable.img_loading_2)
                         .into(headImgCI);
             }
+        }else{
+            ProgressDialogUtil.showProgressDialog(SettingActivity.this,true);
+            Map<String,String> params=new HashMap<>();
+            params.put("token",SpfUtil.getString(Constant.TOKEN,""));
+            params.put("userPhone",SpfUtil.getString(Constant.LOGIN_USERPHONE,""));
+            OkHttpHelp<ResultItem> httpHelp=OkHttpHelp.getInstance();
+            httpHelp.httpRequest("", Constant.GET_USER_URL, params, new ResponseListener<ResultItem>() {
+                @Override
+                public void onSuccess(ResultItem object) {
+                    ProgressDialogUtil.dismissProgressdialog();
+                    if("fail".equals(object.getResult())){
+                        if("token error".equals(object.getData())){
+                            toast("token失效,请重新登录");
+                            tokenError();
+                            finish();
+                        }
+                    }else{
+                        JSONObject userJson = null;
+                        try {
+                            userJson = new JSONObject(object.getData());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        UserItem userItem = (new Gson()).fromJson(userJson.toString(), UserItem.class);
+                        BaseApplication.getAPPInstance().setmUser(userItem);
+                        setSelfData();
+                    }
+                }
+
+                @Override
+                public void onFailed(String message) {
+                    ProgressDialogUtil.dismissProgressdialog();
+                }
+
+                @Override
+                public Class getEntityClass() {
+                    return ResultItem.class;
+                }
+            });
+
+
         }
     }
 
-
     @Override
     protected void onDestroy() {
+        MyUtil.MyLogE(TAG,"onDestroy");
         super.onDestroy();
     }
 }

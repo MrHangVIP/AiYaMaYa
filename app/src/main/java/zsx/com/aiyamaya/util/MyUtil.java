@@ -1,6 +1,11 @@
 
 package zsx.com.aiyamaya.util;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
@@ -15,6 +20,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Base64;
 import android.util.Log;
 
 import zsx.com.aiyamaya.listener.ErrorListener;
@@ -200,5 +206,53 @@ public final class MyUtil {
 	}	
 	
 	public void cancle(){
+	}
+
+
+	/**
+	 * 获取设备mac，不开wifi的情况下也能获取
+	 * @return
+     */
+	public static String getMac() {
+		String macSerial = "";
+		try {
+			Process pp = Runtime.getRuntime().exec(
+					"cat /sys/class/net/wlan0/address");
+			InputStreamReader ir = new InputStreamReader(pp.getInputStream());
+			LineNumberReader input = new LineNumberReader(ir);
+
+			String line;
+			while ((line = input.readLine()) != null) {
+				macSerial += line.trim();
+			}
+			input.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return macSerial;
+	}
+
+	/**
+	 * 图片文件转Base64字符串
+	 * @param path　
+	 * @return
+	 */
+	public static  String fileBase64String(String path){
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			int count = 0;
+			while((count = fis.read(buffer)) >= 0){
+				baos.write(buffer, 0, count);
+			}
+			fis.close();
+			String uploadBuffer = new String(Base64.encodeToString(baos.toByteArray(),Base64.DEFAULT));  //进行Base64编码
+			return uploadBuffer;
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 }

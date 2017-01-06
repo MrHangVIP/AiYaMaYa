@@ -55,7 +55,7 @@ public class OkHttpHelp<T>  {
         if(url==null){
             url= Constant.DEFAULT_URL;
         }else{
-            url=Constant.DEFAULT_URL+"/"+url;
+            url=Constant.DEFAULT_URL+url;
         }
         RequestBody formBody=null;
         if (params != null) {

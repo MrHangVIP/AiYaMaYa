@@ -79,7 +79,6 @@ public class RegistFragment extends BaseFragment{
                     registFail();
                     break;
                 }
-
                 if (userpass.length() < 8) {
                     toast("密码长度不能地域8位");
                     registFail();
@@ -91,7 +90,7 @@ public class RegistFragment extends BaseFragment{
                 params.put("userPass",userpass);
                 params.put("status", SpfUtil.getString(Constant.MUM_STATE,"prepared"));
                 OkHttpHelp<ResultItem> httpHelp= OkHttpHelp.getInstance();
-                httpHelp.httpRequest("post", "RegistUser", params, new ResponseListener<ResultItem>() {
+                httpHelp.httpRequest("post",Constant.REGIST_URL, params, new ResponseListener<ResultItem>() {
                     @Override
                     public void onSuccess(ResultItem object) {
                         ProgressDialogUtil.dismissProgressdialog();

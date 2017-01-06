@@ -23,6 +23,7 @@ import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ResultItem;
 import zsx.com.aiyamaya.item.UserItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
+import zsx.com.aiyamaya.ui.activity.BaseActivity;
 import zsx.com.aiyamaya.ui.activity.ForgetPassActivity;
 import zsx.com.aiyamaya.ui.activity.LoginActivity;
 import zsx.com.aiyamaya.ui.activity.SettingActivity;
@@ -94,13 +95,15 @@ public class LoginFragment extends BaseFragment {
                 Map<String, String> params = new HashMap<>();
                 params.put("userPhone", username);
                 params.put("userPass", userpass);
+                params.put("MAC",Constant.MacAddress);
                 OkHttpHelp<ResultItem> httpHelp = OkHttpHelp.getInstance();
-                httpHelp.httpRequest("post", "LoginUser", params, new ResponseListener<ResultItem>() {
+                httpHelp.httpRequest("post", Constant.LOGIN_URL, params, new ResponseListener<ResultItem>() {
                     @Override
                     public void onSuccess(ResultItem object) {
                         ProgressDialogUtil.dismissProgressdialog();
-                        if (object.getResult().equals("success")) {
+                        if (!object.getResult().equals("fail")) {
                             toast("登录成功！");
+                            SpfUtil.saveString(Constant.TOKEN,object.getResult());
                             JSONObject userJson = null;
                             try {
                                 userJson = new JSONObject(object.getData());
@@ -110,8 +113,9 @@ public class LoginFragment extends BaseFragment {
                             UserItem userItem = (new Gson()).fromJson(userJson.toString(), UserItem.class);
                             BaseApplication.getAPPInstance().setmUser(userItem);
                             SpfUtil.saveBoolean(Constant.IS_LOGIN, true);
-                            getActivity().setResult(SettingActivity.RESULT_LOGIN);
-                            getActivity().finish();
+                            SpfUtil.saveString(Constant.LOGIN_USERPHONE,userItem.getUserPhone());
+//                            getActivity().setResult(SettingActivity.RESULT_LOGIN);
+                            ((BaseActivity)getActivity()).goToNext(SettingActivity.class);
                         } else {
                             toast("用户名或密码错误");
                             loginFail();
