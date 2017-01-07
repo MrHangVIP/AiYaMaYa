@@ -39,7 +39,7 @@
         <!-- 是否漂现在activity上 -->
         <item name="android:windowIsTranslucent">false</item>
         <!-- 是否半透明 -->
-        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowNoTitle">false</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowBackground">@color/trans_white</item>
         <item name="android:windowFullscreen">true</item>

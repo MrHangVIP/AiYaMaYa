@@ -95,9 +95,11 @@ public class MyselfActivity extends BaseActivity {
         if (user != null) {
             stateTV.setText(user.getStatus());
             nickNameTV.setText(user.getNickName());
-            Glide.with(this)
-                    .load(Constant.DEFAULT_URL+Constant.IMAGE_URL+user.getHeadUrl())
-                    .into(headImgIV);
+            if(!"".equals(user.getHeadUrl())){
+                Glide.with(this)
+                        .load(Constant.DEFAULT_URL+Constant.IMAGE_URL+user.getHeadUrl())
+                        .into(headImgIV);
+            }
         }
     }
 

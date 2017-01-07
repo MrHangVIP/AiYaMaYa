@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import zsx.com.aiyamaya.R;
 
 /**
@@ -22,6 +25,8 @@ public class ProgressDialogUtil {
     public static Context mcontext;
     private static Dialog mProgressDialog = null;
 
+    private static long showTime;
+
     public static Dialog showProgressDialog(Context context, boolean NOdimiss) {
         Log.e("222", "--ProcessDialog-0-" + context);
         if (mcontext != context) {
@@ -29,7 +34,7 @@ public class ProgressDialogUtil {
 //			dismissProgressdialog();
             mProgressDialog = null;
         }
-
+        showTime = System.currentTimeMillis();
         if (mProgressDialog == null) {
             mProgressDialog = new Dialog(context, R.style.progress_dialog);
         }
@@ -46,8 +51,8 @@ public class ProgressDialogUtil {
         mProgressDialog.setContentView(view);// 设置布局
         WindowManager.LayoutParams windowParams = mProgressDialog.getWindow()
                 .getAttributes();
-        windowParams.width =  Constant.getScreenWidth(context); // 设置宽度
-        windowParams.height =  Constant.getScreenHeight(context); // 设置高度
+        windowParams.width = Constant.getScreenWidth(context); // 设置宽度
+        windowParams.height = Constant.getScreenHeight(context); // 设置高度
         mProgressDialog.getWindow().setAttributes(windowParams);
         if (NOdimiss) {
             mProgressDialog.setCancelable(false);
@@ -70,10 +75,29 @@ public class ProgressDialogUtil {
 
     public static void dismissProgressdialog() {
         // isShow=false;
+
         if (mProgressDialog != null) {
-            Log.e("222", "=====dismis====s");
-            mProgressDialog.dismiss();
-            mProgressDialog = null;
+            final long time = System.currentTimeMillis() - showTime;
+            if (time < 1000) {
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+
+                        Log.e("222", "=====dismis====time:" + time);
+                        synchronized (mcontext) {
+                            if (mProgressDialog != null) {
+                                mProgressDialog.dismiss();
+                                mProgressDialog = null;
+                            }
+                        }
+
+                    }
+                }, 1000 - time);
+            } else {
+                Log.e("222", "=====dismis====s");
+                mProgressDialog.dismiss();
+                mProgressDialog = null;
+            }
         }
     }
 }

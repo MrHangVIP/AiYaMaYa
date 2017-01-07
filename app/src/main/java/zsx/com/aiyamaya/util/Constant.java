@@ -25,6 +25,9 @@ public class Constant {
     public static final String IMAGE_UPLOAD_URL="/ImageUpload";
     public static final String UPDATE_HEAD_URL="/UpdateHeadUrl";
 
+    public static final String GET_RANDOM_ARTICLE="/GetRandomArticle";
+    public static final String GET_TYPE_ARTICLE="/GetTypeArticle";
+
 
     public static final int IMAGE_UPLOAD_OK=0x1000;
     public static final int IMAGE_UPLOAD_FAIL=0x1001;

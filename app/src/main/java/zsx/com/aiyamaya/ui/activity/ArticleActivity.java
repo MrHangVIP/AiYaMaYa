@@ -66,10 +66,10 @@ public class ArticleActivity extends BaseActivity {
         mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(2)));
         mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(3)));
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new ArticleFragment());
-        fragments.add(new ArticleFragment());
-        fragments.add(new ArticleFragment());
-        fragments.add(new ArticleFragment());
+        fragments.add(new ArticleFragment().setData(0));
+        fragments.add(new ArticleFragment().setData(1));
+        fragments.add(new ArticleFragment().setData(2));
+        fragments.add(new ArticleFragment().setData(3));
         ArticleViewPagerAdapter adapter =
                 new ArticleViewPagerAdapter(getSupportFragmentManager(), fragments, titles);
         mViewPager.setAdapter(adapter);
@@ -81,4 +81,5 @@ public class ArticleActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
 }

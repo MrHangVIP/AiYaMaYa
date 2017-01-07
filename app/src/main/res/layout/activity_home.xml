@@ -36,21 +36,16 @@
 
     </RelativeLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="horizontal">-->
-        <!--<ListView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <!--</ListView>-->
-
-    <!--</LinearLayout>-->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingLeft="20dp"
+            android:layout_weight="1.0"
+            android:paddingLeft="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -98,6 +93,14 @@
 
 
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/ah_fl_article"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.0"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

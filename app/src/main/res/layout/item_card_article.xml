@@ -21,9 +21,11 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/ica_iv_image"
                 android:layout_width="120dp"
-                android:layout_height="70dp"
-                android:background="@drawable/cheese_3"/>
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/cheese_3"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -41,6 +43,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/ica_tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="美文"
@@ -48,6 +51,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/ica_tv_readnum"
                 android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,6 +59,7 @@
                 android:textSize="12sp"/>
 
             <TextView
+                android:id="@+id/ica_tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -64,6 +69,7 @@
                 android:text="故事，启迪你的人生；美文，陶冶你的情操，有声朗读，洗礼你的耳朵……"/>
 
             <TextView
+                android:id="@+id/ica_tv_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

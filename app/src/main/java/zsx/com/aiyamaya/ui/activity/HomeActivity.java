@@ -1,15 +1,27 @@
 package zsx.com.aiyamaya.ui.activity;
 
 import android.app.Activity;
-import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.FrameLayout;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.api.OkHttpHelp;
+import zsx.com.aiyamaya.item.ResultItem;
+import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.ui.dialog.ShareDialog;
+import zsx.com.aiyamaya.ui.fragment.HomeArticleFragment;
+import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.ProgressDialogUtil;
 
 public class HomeActivity extends BaseActivity {
 
     private static final String TAG = "HomeActivity";
+    private FragmentManager fragmentManger;
 
     @Override
     protected void setView() {
@@ -18,16 +30,22 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void findViews() {
+        FrameLayout articleFL=(FrameLayout)findViewById(R.id.ah_fl_article);
 
     }
 
     @Override
     protected void initData() {
+        HomeArticleFragment articleFragment=new HomeArticleFragment();
+        fragmentManger = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManger.beginTransaction();
+        transaction.replace(R.id.ah_fl_article, articleFragment);
+        transaction.commit();
     }
 
     @Override
     protected void setListener() {
-        this.findViewById(R.id.iv_share).setOnClickListener(this);
+        findViewById(R.id.iv_share).setOnClickListener(this);
         findViewById(R.id.iv_setting).setOnClickListener(this);
         findViewById(R.id.iv_home_page).setOnClickListener(this);
         findViewById(R.id.iv_shares).setOnClickListener(this);

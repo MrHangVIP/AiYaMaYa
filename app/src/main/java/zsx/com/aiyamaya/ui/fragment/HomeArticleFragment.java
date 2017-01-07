@@ -20,33 +20,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import zsx.com.aiyamaya.R;
-import zsx.com.aiyamaya.adapter.ArticleRecyclerViewAdapter;
 import zsx.com.aiyamaya.adapter.HomeArticleAdapter;
 import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ArticleItem;
 import zsx.com.aiyamaya.item.ResultItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
-import zsx.com.aiyamaya.ui.activity.BaseActivity;
 import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.MyUtil;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
 
-public class ArticleFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class HomeArticleFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     private static final String TAG = "ArticleFragment";
 
     private RecyclerView mRecyclerView;
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private List<ArticleItem> articleList=new ArrayList<>();
-
     private static final int refresh = 0x100;
 
-    private int type;
+    private List<ArticleItem> articleList=new ArrayList<>();
 
     private Handler handler = new Handler() {
         @Override
@@ -54,10 +48,7 @@ public class ArticleFragment extends Fragment implements SwipeRefreshLayout.OnRe
             super.handleMessage(msg);
             switch (msg.what) {
                 case refresh:
-                    swipeRefreshLayout.setRefreshing(false);
-                    if(getActivity()!=null){
-                    ((BaseActivity)getActivity()).toast("刷新成功！");
-                    }
+
                     break;
             }
         }
@@ -72,35 +63,30 @@ public class ArticleFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
                 android.R.color.holo_red_light, android.R.color.holo_orange_light,
                 android.R.color.holo_green_light);
-        getData();
         return view;
-    }
-
-    public ArticleFragment setData(int type){
-        this.type=type;
-        return this;
     }
 
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        getData();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
     }
 
     @Override
     public void onRefresh() {
         getData();
+//        handler.sendEmptyMessageDelayed(refresh, 3000);
     }
-
 
     private void getData(){
         articleList.clear();
         ProgressDialogUtil.showProgressDialog(getActivity(),true);
         Map<String,String> map=new HashMap<>();
-        map.put("type",type+"");
+        map.put("random","7");
         OkHttpHelp<ResultItem> httpHelp=OkHttpHelp.getInstance();
-        httpHelp.httpRequest("", Constant.GET_TYPE_ARTICLE, map, new ResponseListener<ResultItem>() {
+        httpHelp.httpRequest("", Constant.GET_RANDOM_ARTICLE, map, new ResponseListener<ResultItem>() {
             @Override
             public void onSuccess(ResultItem object) {
                 ProgressDialogUtil.dismissProgressdialog();
