@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,14 +25,20 @@ import java.util.Map;
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.adapter.HomeArticleAdapter;
 import zsx.com.aiyamaya.api.OkHttpHelp;
+import zsx.com.aiyamaya.api.OkHttpNewsHelp;
 import zsx.com.aiyamaya.item.ArticleItem;
+import zsx.com.aiyamaya.item.NewsDataItem;
 import zsx.com.aiyamaya.item.ResultItem;
+import zsx.com.aiyamaya.item.TouTiaoItem;
+import zsx.com.aiyamaya.item.TouTiaoNewsItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.MyUtil;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
 
-public class HomeArticleFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+import static zsx.com.aiyamaya.util.MyUtil.T;
+
+public class HomeArticleFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = "ArticleFragment";
 
     private RecyclerView mRecyclerView;
@@ -40,7 +47,9 @@ public class HomeArticleFragment extends Fragment implements SwipeRefreshLayout.
 
     private static final int refresh = 0x100;
 
-    private List<ArticleItem> articleList=new ArrayList<>();
+    private List<ArticleItem> articleList = new ArrayList<>();
+
+    private List<NewsDataItem> newsList = new ArrayList<>();
 
     private Handler handler = new Handler() {
         @Override
@@ -80,33 +89,36 @@ public class HomeArticleFragment extends Fragment implements SwipeRefreshLayout.
 //        handler.sendEmptyMessageDelayed(refresh, 3000);
     }
 
-    private void getData(){
+    private void getData() {
         articleList.clear();
-        ProgressDialogUtil.showProgressDialog(getActivity(),true);
-        Map<String,String> map=new HashMap<>();
-        map.put("random","7");
-        OkHttpHelp<ResultItem> httpHelp=OkHttpHelp.getInstance();
-        httpHelp.httpRequest("", Constant.GET_RANDOM_ARTICLE, map, new ResponseListener<ResultItem>() {
+        newsList.clear();
+        ProgressDialogUtil.showProgressDialog(getActivity(), true);
+        Map<String, String> map = new HashMap<>();
+//        map.put("random","7");
+        OkHttpNewsHelp<NewsDataItem> httpHelp = OkHttpNewsHelp.getInstance();
+        httpHelp.httpRequest("", "", map, new ResponseListener<NewsDataItem>() {
             @Override
-            public void onSuccess(ResultItem object) {
+            public void onSuccess(NewsDataItem object) {
+                newsList.add(object);
                 ProgressDialogUtil.dismissProgressdialog();
-                if(object.getResult().equals("success")){
-                    try {
-                        JSONArray jsonArray=new JSONArray(object.getData());
-                        for(int i=0;i<jsonArray.length();i++){
-                            ArticleItem articleItem=  new Gson().fromJson(jsonArray.get(i).toString(), ArticleItem.class);
-                            articleList.add(articleItem);
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        MyUtil.MyLogE(TAG,e.toString());
-                    }
-                    mRecyclerView.setAdapter(new HomeArticleAdapter(getActivity(),articleList));
-                    if(getActivity()!=null && swipeRefreshLayout.isRefreshing()){
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                }
+                getDatas();
+//                if(object.getResult().equals("success")){
+//                    try {
+//                        JSONArray jsonArray=new JSONArray(object.getData());
+//                        for(int i=0;i<jsonArray.length();i++){
+//                            ArticleItem articleItem=  new Gson().fromJson(jsonArray.get(i).toString(), ArticleItem.class);
+//                            articleList.add(articleItem);
+//                        }
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                        MyUtil.MyLogE(TAG,e.toString());
+//                    }
+//                    mRecyclerView.setAdapter(new HomeArticleAdapter(getActivity(),articleList));
+//                    if(getActivity()!=null && swipeRefreshLayout.isRefreshing()){
+//                        swipeRefreshLayout.setRefreshing(false);
+//                    }
+//                }
             }
 
             @Override
@@ -115,9 +127,17 @@ public class HomeArticleFragment extends Fragment implements SwipeRefreshLayout.
             }
 
             @Override
-            public Class<ResultItem> getEntityClass() {
-                return ResultItem.class;
+            public Class<NewsDataItem> getEntityClass() {
+                return NewsDataItem.class;
             }
         });
     }
+
+    private void getDatas() {
+        mRecyclerView.setAdapter(new HomeArticleAdapter(getActivity(), newsList));
+        if (getActivity() != null && swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }
+
 }

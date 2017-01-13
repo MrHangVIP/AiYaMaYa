@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_web_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg"
+    tools:context="zsx.com.aiyamaya.ui.activity.WebViewActivity">
+
+    <WebView
+        android:layout_below="@+id/title"
+        android:id="@+id/awv_web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+    </WebView>
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/title"
+        />
+
+</RelativeLayout>

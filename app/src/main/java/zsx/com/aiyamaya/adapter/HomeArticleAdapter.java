@@ -2,8 +2,8 @@ package zsx.com.aiyamaya.adapter;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.media.Image;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +17,9 @@ import java.util.List;
 
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.item.ArticleItem;
+import zsx.com.aiyamaya.item.NewsDataItem;
+import zsx.com.aiyamaya.ui.activity.BaseActivity;
+import zsx.com.aiyamaya.ui.activity.WebViewActivity;
 import zsx.com.aiyamaya.util.Constant;
 
 public class HomeArticleAdapter extends RecyclerView.Adapter<HomeArticleAdapter.ViewHolder> {
@@ -25,9 +28,16 @@ public class HomeArticleAdapter extends RecyclerView.Adapter<HomeArticleAdapter.
 
     private List<ArticleItem> articleList;
 
-    public HomeArticleAdapter(Context mContext,List<ArticleItem> articleList) {
+    private List<NewsDataItem> newsList;
+
+    public HomeArticleAdapter(Context mContext, List<ArticleItem> articleList, String str) {
         this.mContext = mContext;
-        this.articleList=articleList;
+        this.articleList = articleList;
+    }
+
+    public HomeArticleAdapter(Context mContext, List<NewsDataItem> newsList) {
+        this.mContext = mContext;
+        this.newsList = newsList;
     }
 
     @Override
@@ -44,20 +54,45 @@ public class HomeArticleAdapter extends RecyclerView.Adapter<HomeArticleAdapter.
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final View view = holder.mView;
-        ArticleItem articleItem=articleList.get(position);
-        Glide.with(mContext)
-                .load(Constant.DEFAULT_URL+Constant.IMAGE_URL+articleItem.getImageUrl())
-                .into(holder.imageIV);
-        holder.titleTV.setText(articleItem.getTitle());
-        holder.readNumTV.setText("阅读量："+articleItem.getReadnum());
-        holder.contentTV.setText(articleItem.getContent());
+        if (articleList != null) {
+            ArticleItem articleItem = articleList.get(position);
+            Glide.with(mContext)
+                    .load(Constant.DEFAULT_URL + Constant.IMAGE_URL + articleItem.getImageUrl())
+                    .into(holder.imageIV);
+            holder.titleTV.setText(articleItem.getTitle());
+            holder.readNumTV.setText("阅读量：" + articleItem.getReadnum());
+            holder.contentTV.setText(articleItem.getContent());
+        }
+        if (newsList != null) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("newsUrl", newsList.get(position).getUrl());
+                    ((BaseActivity) mContext).jumpToNext(WebViewActivity.class, bundle);
+                }
+            });
+            NewsDataItem articleItem = newsList.get(position);
+            Glide.with(mContext)
+                    .load(articleItem.getThumbnail_pic_s())
+                    .into(holder.imageIV);
+            holder.titleTV.setText(articleItem.getTitle());
+//            holder.readNumTV.setText("阅读量："+articleItem.getReadnum());
+//            holder.contentTV.setText(articleItem.getContent());
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return articleList.size();
+        if (newsList != null) {
+            return newsList.size();
+        } else {
+            return articleList.size();
+        }
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

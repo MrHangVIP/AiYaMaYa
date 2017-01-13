@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".BaseApplication"
@@ -31,7 +31,8 @@
         <activity android:name=".ui.activity.PostDetailActivity" />
         <activity android:name=".ui.activity.WritePostActivity" />
         <activity android:name=".ui.activity.StateSelectActivity" />
-        <activity android:name=".ui.activity.MyselfActivity"></activity>
+        <activity android:name=".ui.activity.MyselfActivity" />
+        <activity android:name=".ui.activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

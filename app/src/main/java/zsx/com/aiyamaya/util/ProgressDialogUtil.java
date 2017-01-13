@@ -74,29 +74,32 @@ public class ProgressDialogUtil {
     }
 
     public static void dismissProgressdialog() {
-        // isShow=false;
-
+        Log.e("222", "=====dismis====s");
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        }
         if (mProgressDialog != null) {
             final long time = System.currentTimeMillis() - showTime;
-            if (time < 1000) {
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-
-                        Log.e("222", "=====dismis====time:" + time);
-                        synchronized (mcontext) {
-                            if (mProgressDialog != null) {
-                                mProgressDialog.dismiss();
-                                mProgressDialog = null;
-                            }
+            synchronized (mProgressDialog){
+                if (time < 1000) {
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            Log.e("222", "=====dismis====time:" + time);
+                                if (mProgressDialog != null) {
+                                    mProgressDialog.dismiss();
+                                    mProgressDialog = null;
+                                }
                         }
-
+                    }, 1000 - time);
+                } else {
+                    Log.e("222", "=====dismis====s");
+                    if (mProgressDialog != null) {
+                        mProgressDialog.dismiss();
+                        mProgressDialog = null;
                     }
-                }, 1000 - time);
-            } else {
-                Log.e("222", "=====dismis====s");
-                mProgressDialog.dismiss();
-                mProgressDialog = null;
+                }
             }
         }
     }

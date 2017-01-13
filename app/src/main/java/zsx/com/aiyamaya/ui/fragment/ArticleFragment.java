@@ -116,7 +116,7 @@ public class ArticleFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         e.printStackTrace();
                         MyUtil.MyLogE(TAG,e.toString());
                     }
-                    mRecyclerView.setAdapter(new HomeArticleAdapter(getActivity(),articleList));
+                    mRecyclerView.setAdapter(new HomeArticleAdapter(getActivity(),articleList,""));
                     if(getActivity()!=null && swipeRefreshLayout.isRefreshing()){
                         swipeRefreshLayout.setRefreshing(false);
                     }

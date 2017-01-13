@@ -133,7 +133,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      * @param mClass
      * @param bundle
      */
-    protected void jumpToNext(Class<?> mClass, Bundle bundle) {
+    public void jumpToNext(Class<?> mClass, Bundle bundle) {
         jumpToNext(mClass, bundle, 0);
     }
 
@@ -156,7 +156,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      *
      * @param mClass
      */
-    protected void jumpToNext(Class<?> mClass) {
+    public void jumpToNext(Class<?> mClass) {
         jumpToNext(mClass, null);
     }
 
