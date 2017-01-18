@@ -3,71 +3,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_main_bg"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-   <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="标题："
-            android:textColor="#333333"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"/>
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
 
         <EditText
-            android:id="@+id/awp_tv_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/awp_et_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="请输入标题"
-            android:textSize="20dp"
+            android:hint="请输入标题,不可以不填哦！"
             android:textColor="#333333"
-            android:background="#FFFAEA"/>
+            android:textCursorDrawable="@drawable/cursor_shape"
+            android:background="@null"
+            android:textSize="20dp" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/awp_tv_content"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:background="#FFFAEA"
-        android:ems="10"
-        android:text="说说此刻的感受...说说此刻的感受...说说此刻的感受...说说此刻的感受...说说此刻的感受..."
-        android:textColor="#CDCDCD"
-        android:textSize="20dp" >
-
-
-    </EditText>
-
     <View
-        android:id="@+id/view"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="50dp"
-        android:background="#A0A0A0" />
-    <ImageView
-        android:id="@+id/awp_iv_postimg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/headimg01"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"/>
+        android:background="#ccc"/>
 
-    <!--   <TextView
-         android:id="@+id/awp_tx_time"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft="15dp"
-         android:layout_marginTop="30dp"
-         android:text="(当前发帖时间)2016-11-03 14:20"
-         android:textColor="#333333"
-         android:textSize="20dp" />-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <zsx.com.aiyamaya.ui.widget.RichTextEditor
+            android:id="@+id/awp_rte_richtext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/awp_ll_buttom"
+            />
+
+        <LinearLayout
+            android:id="@+id/awp_ll_buttom"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ccc"/>
+
+            <include layout="@layout/layout_buttom_edit" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
 
 </LinearLayout>

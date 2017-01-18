@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/lbe_iv_emojy"
+        android:layout_weight="1.0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/post_emoji"/>
+
+    <ImageView
+        android:id="@+id/lbe_iv_album"
+        android:layout_weight="1.0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/post_album"/>
+
+    <ImageView
+        android:id="@+id/lbe_iv_photo"
+        android:layout_weight="1.0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/post_photo"/>
+
+
+
+</LinearLayout>

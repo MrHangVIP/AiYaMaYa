@@ -125,7 +125,7 @@ public class SettingActivity extends BaseActivity {
             if(mUser.getHeadUrl()!=null && !"".equals(mUser.getHeadUrl())){
                 Glide.with(SettingActivity.this)
                         .load(Constant.DEFAULT_URL+Constant.IMAGE_URL+mUser.getHeadUrl())
-//                        .placeholder(R.drawable.img_loading_2)
+                        .placeholder(R.drawable.img_loading_2)
                         .into(headImgCI);
             }
         }else{

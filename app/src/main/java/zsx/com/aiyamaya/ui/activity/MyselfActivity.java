@@ -93,6 +93,7 @@ public class MyselfActivity extends BaseActivity {
             if(!"".equals(user.getHeadUrl())){
                 Glide.with(this)
                         .load(Constant.DEFAULT_URL+Constant.IMAGE_URL+user.getHeadUrl())
+                        .placeholder(R.drawable.img_loading_2)
                         .into(headImgIV);
             }
         }
