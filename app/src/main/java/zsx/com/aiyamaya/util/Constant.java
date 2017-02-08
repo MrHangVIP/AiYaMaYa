@@ -27,6 +27,9 @@ public class Constant {
 
     public static final String GET_RANDOM_ARTICLE="/GetRandomArticle";
     public static final String GET_TYPE_ARTICLE="/GetTypeArticle";
+    public static final String WRITE_POSTBAR="/WritePostBar";
+    public static final String GET_POSTBAR="/GetPostBar";
+
 
 
     public static final int IMAGE_UPLOAD_OK=0x1000;
@@ -45,6 +48,8 @@ public class Constant {
     //-------本地sharedpreference的key结束----------
 
 
+    //分隔符
+    public static final String MY_SPLIT_STR="<&;&>";
 
     public static final String MacAddress=MyUtil.getMac();
 

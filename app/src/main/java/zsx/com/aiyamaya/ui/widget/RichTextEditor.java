@@ -7,6 +7,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -22,7 +26,11 @@ import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.List;
 
+import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.item.EmojiItem;
+import zsx.com.aiyamaya.ui.activity.BaseActivity;
+import zsx.com.aiyamaya.ui.activity.WritePostActivity;
 
 /**
  * 这是一个富文本编辑器，给外部提供insertImage接口，添加的图片跟当前光标所在位置有关
@@ -54,7 +62,7 @@ public class RichTextEditor extends ScrollView {
 		this(context, attrs, 0);
 	}
 
-	public RichTextEditor(Context context, AttributeSet attrs, int defStyleAttr) {
+	public RichTextEditor(Context context, final AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		inflater = LayoutInflater.from(context);
 
@@ -97,6 +105,9 @@ public class RichTextEditor extends ScrollView {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus) {
+					if(activity!=null){
+						activity.hideEmoji();
+					}
 					lastFocusEdit = (EditText) v;
 				}
 			}
@@ -113,7 +124,7 @@ public class RichTextEditor extends ScrollView {
 
 	/**
 	 * 处理软键盘backSpace回退事件
-	 * 
+	 *
 	 * @param editTxt
 	 *            光标所在的文本输入框
 	 */
@@ -140,7 +151,7 @@ public class RichTextEditor extends ScrollView {
 					allLayout.setLayoutTransition(mTransitioner); // 恢复transition动画
 
 					// 文本合并
-					preEdit.setText(str2 + str1);
+					preEdit.setText(activity.setEmoji(str2 + str1));
 					preEdit.requestFocus();
 					preEdit.setSelection(str2.length(), str2.length());
 					lastFocusEdit = preEdit;
@@ -214,7 +225,7 @@ public class RichTextEditor extends ScrollView {
 			addImageViewAtIndex(lastEditIndex, bitmap, imagePath);
 		} else {
 			// 如果EditText非空且光标不在最顶端，则需要添加新的imageView和EditText
-			lastFocusEdit.setText(editStr1);
+			lastFocusEdit.setText(activity.setEmoji(editStr1));
 			String editStr2 = lastEditStr.substring(cursorIndex).trim();
 			if (allLayout.getChildCount() - 1 == lastEditIndex
 					|| editStr2.length() > 0) {
@@ -247,7 +258,7 @@ public class RichTextEditor extends ScrollView {
 	 */
 	private void addEditTextAtIndex(final int index, String editStr) {
 		EditText editText2 = createEditText("", 0);
-		editText2.setText(editStr);
+		editText2.setText(activity.setEmoji(editStr));
 
 		// 请注意此处，EditText添加、或删除不触动Transition动画
 		allLayout.setLayoutTransition(null);
@@ -310,7 +321,6 @@ public class RichTextEditor extends ScrollView {
 			@Override
 			public void startTransition(LayoutTransition transition,
 					ViewGroup container, View view, int transitionType) {
-
 			}
 
 			@Override
@@ -379,11 +389,13 @@ public class RichTextEditor extends ScrollView {
 			if (itemView instanceof EditText) {
 				EditText item = (EditText) itemView;
 				itemData.inputStr = item.getText().toString();
+				itemData.order="0";
 			} else if (itemView instanceof RelativeLayout) {
 				DataImageView item = (DataImageView) itemView
 						.findViewById(R.id.edit_imageView);
 				itemData.imagePath = item.getAbsolutePath();
 				itemData.bitmap = item.getBitmap();
+				itemData.order="1";
 			}
 			dataList.add(itemData);
 		}
@@ -391,9 +403,21 @@ public class RichTextEditor extends ScrollView {
 		return dataList;
 	}
 
-	class EditData {
-		String inputStr;
-		String imagePath;
-		Bitmap bitmap;
+	public class EditData {
+		public String inputStr;
+		public String imagePath;
+		public Bitmap bitmap;
+		public String order;
 	}
+
+	public EditText getLastFocusEdit() {
+		return lastFocusEdit;
+	}
+
+	private WritePostActivity activity;
+
+	public void setActivity(WritePostActivity activity){
+		this.activity=activity;
+	}
+
 }

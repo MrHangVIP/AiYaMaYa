@@ -11,18 +11,32 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.loader.ImageLoader;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.adapter.CommunicateRecyclerViewAdapter;
+import zsx.com.aiyamaya.api.OkHttpHelp;
+import zsx.com.aiyamaya.item.ArticleItem;
+import zsx.com.aiyamaya.item.PostBarItem;
+import zsx.com.aiyamaya.item.ResultItem;
+import zsx.com.aiyamaya.listener.ResponseListener;
+import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
+import zsx.com.aiyamaya.util.SpfUtil;
 
 /**
  * Created by moram on 2016/9/21
@@ -38,16 +52,10 @@ public class CommunicateActivity extends BaseActivity {
 
     private Toolbar toolbar;
 
+    private List<PostBarItem> postBarList = new ArrayList<>();
 
     @Override
     protected void setView() {
-        ProgressDialogUtil.showProgressDialog(this, false);
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                ProgressDialogUtil.dismissProgressdialog();
-            }
-        }, 2000);
         setContentView(R.layout.activity_communicate);
     }
 
@@ -92,12 +100,13 @@ public class CommunicateActivity extends BaseActivity {
         banner.start();
 
         communicateRcyView.setLayoutManager(new LinearLayoutManager(communicateRcyView.getContext()));
-        communicateRcyView.setAdapter(new CommunicateRecyclerViewAdapter(this));
+        communicateRcyView.setAdapter(new CommunicateRecyclerViewAdapter(this,postBarList));
 
-        if (toolbar != null ) {
+        if (toolbar != null) {
             toolbar.setNavigationIcon(setBackIcon());
             toolbar.setNavigationOnClickListener(setBackClick());
         }
+        getPostBar();
     }
 
     @Override
@@ -126,7 +135,7 @@ public class CommunicateActivity extends BaseActivity {
 //            eg：
 //            Glide 加载图片简单用法
             Glide.with(context).load((int) path).into(imageView);
-    }
+        }
     }
 
     @Override
@@ -139,7 +148,7 @@ public class CommunicateActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_post:
-                jumpToNext(WritePostActivity.class);
+                goToNext(WritePostActivity.class);
 
                 break;
         }
@@ -159,7 +168,49 @@ public class CommunicateActivity extends BaseActivity {
     }
 
     public void checkin(View view) {
-        jumpToNext(WritePostActivity.class);
+        goToNext(WritePostActivity.class);
+    }
+
+
+    private void getPostBar() {
+        ProgressDialogUtil.showProgressDialog(this, true);
+        OkHttpHelp<ResultItem> okHttpHelp = OkHttpHelp.getInstance();
+        Map<String,String> map=new HashMap<>();
+        map.put("userPhone", SpfUtil.getString(Constant.LOGIN_USERPHONE,""));
+        okHttpHelp.httpRequest("", Constant.GET_POSTBAR, map, new ResponseListener<ResultItem>() {
+            @Override
+            public void onSuccess(ResultItem object) {
+                ProgressDialogUtil.dismissProgressdialog();
+                if ("fail".equals(object.getResult())) {
+                    toast("网络错误，请重试！");
+                    return;
+                }
+                JSONArray jsonArray = null;
+                postBarList.clear();
+                try {
+                    jsonArray = new JSONArray(object.getData());
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        PostBarItem postBarItem = new Gson().fromJson(jsonArray.get(i).toString(), PostBarItem.class);
+                        postBarList.add(postBarItem);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailed(String message) {
+                ProgressDialogUtil.dismissProgressdialog();
+                toast("网络错误，请重试！");
+            }
+
+            @Override
+            public Class<ResultItem> getEntityClass() {
+                return ResultItem.class;
+            }
+        });
+
+
     }
 
 }

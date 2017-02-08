@@ -11,10 +11,17 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.loader.ImageLoader;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.item.EmojiItem;
 import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.MyUtil;
 import zsx.com.aiyamaya.util.SpfUtil;
 
 public class GuideActivity extends BaseActivity {
@@ -39,6 +46,7 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        BaseApplication.getEmoji(this);
         imageList = new ArrayList<Integer>();
         imageList.add(R.drawable.img_wel1);
         imageList.add(R.drawable.img_wel2);

@@ -11,17 +11,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.api.OkHttpHelp;
+import zsx.com.aiyamaya.item.ArticleItem;
 import zsx.com.aiyamaya.item.ResultItem;
 import zsx.com.aiyamaya.item.UserItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
@@ -53,11 +60,22 @@ public class MyselfActivity extends BaseActivity {
             ProgressDialogUtil.dismissProgressdialog();
             if(msg.what==Constant.IMAGE_UPLOAD_OK){
                 ResultItem object=(ResultItem) msg.obj;
-                if (object.getResult().equals("fail")) {
-                        toast("更新失败");
+                if (object.getResult().equals("token error")) {
+                        toast("登录超时，请重新登录！");
+                        tokenError();
+                        finish();
                 } else {
                     toast("修改成功");
-                    headUrl=object.getData();
+                    try {
+                        JSONArray jsonArray=new JSONArray(object.getData());
+                        for(int i=0;i<jsonArray.length();i++){
+                            headUrl=  new Gson().fromJson(jsonArray.get(i).toString(), String.class);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        MyUtil.MyLogE(TAG,e.toString());
+                    }
                     BaseApplication.getAPPInstance().getmUser().setHeadUrl(headUrl);
                     updateHeadUrl();
                 }
@@ -286,7 +304,9 @@ public class MyselfActivity extends BaseActivity {
 
     private void imageUpload(String path){
         ProgressDialogUtil.showProgressDialog(this,true);
-        UploadImageModel uploadImageModel=new UploadImageModel(path,mHandler);
+        List<String> pathList=new ArrayList<String>();
+        pathList.add(path);
+        UploadImageModel uploadImageModel=new UploadImageModel(pathList,mHandler);
         uploadImageModel.imageUpload();
     }
 
@@ -309,7 +329,6 @@ public class MyselfActivity extends BaseActivity {
                     MyUtil.MyLogE(TAG,"插入成功！");
                 }
             }
-
             @Override
             public void onFailed(String message) {
                 MyUtil.MyLogE(TAG,"连接失败");

@@ -4,8 +4,9 @@
     android:layout_height="wrap_content"
     android:background="@null"
     android:cursorVisible="true"
-    android:lineSpacingExtra="10dp"
+    android:lineSpacingExtra="5dp"
     android:textColor="#444"
+    android:textSize="20sp"
     android:textCursorDrawable="@drawable/cursor_shape">
 
 </zsx.com.aiyamaya.ui.widget.DeletableEditText>

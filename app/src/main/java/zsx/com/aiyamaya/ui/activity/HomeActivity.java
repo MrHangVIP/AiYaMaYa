@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import java.util.HashMap;
 import java.util.Map;
 
+import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ResultItem;
@@ -17,6 +18,7 @@ import zsx.com.aiyamaya.ui.dialog.ShareDialog;
 import zsx.com.aiyamaya.ui.fragment.HomeArticleFragment;
 import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
+import zsx.com.aiyamaya.util.SpfUtil;
 
 public class HomeActivity extends BaseActivity {
 
@@ -70,7 +72,12 @@ public class HomeActivity extends BaseActivity {
                 break;
 
             case R.id.iv_shares:
-                jumpToNext(CommunicateActivity.class);
+                if(SpfUtil.getBoolean(Constant.IS_LOGIN,false)&& BaseApplication.getAPPInstance().getmUser()!=null){
+                    jumpToNext(CommunicateActivity.class);
+                }else{
+                    toast("请先登录");
+                }
+
                 break;
 
             case R.id.iv_classical_article:

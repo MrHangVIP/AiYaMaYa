@@ -75,6 +75,7 @@ public class ArticleActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(adapter);
+
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import zsx.com.aiyamaya.api.OkHttpHelp;
@@ -20,17 +21,23 @@ import zsx.com.aiyamaya.util.SpfUtil;
 public class UploadImageModel {
 
     private static final String TAG = "UploadImageModel";
-    private String path;
+    private List<String> path;
     private Handler handler;
 
-    public UploadImageModel(String path, Handler handler) {
+    public UploadImageModel(List<String>  path, Handler handler) {
         this.path = path;
         this.handler = handler;
     }
 
     public void imageUpload() {
         Map<String, String> params = new HashMap<>();
-        params.put("image", MyUtil.fileBase64String(path));
+        params.put("userPhone",SpfUtil.getString(Constant.LOGIN_USERPHONE,""));
+        params.put("token",SpfUtil.getString(Constant.TOKEN,""));
+        String imagePath="";
+        for(String str:path){
+            imagePath= MyUtil.fileBase64String(str)+SpfUtil.getString(Constant.TOKEN,"");
+        }
+        params.put("image", imagePath);
         OkHttpHelp<ResultItem> httpHelp = OkHttpHelp.getInstance();
         httpHelp.httpRequest("", Constant.IMAGE_UPLOAD_URL, params, new ResponseListener<ResultItem>() {
             @Override

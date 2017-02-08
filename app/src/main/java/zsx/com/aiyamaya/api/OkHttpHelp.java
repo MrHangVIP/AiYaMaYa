@@ -20,6 +20,8 @@ import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.MyUtil;
 
+import static android.R.attr.value;
+
 /**
  * Created by moram on 2016/12/30.
  */

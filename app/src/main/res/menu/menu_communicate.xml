@@ -3,6 +3,7 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_post"
-        android:title="发表"
-        app:showAsAction="never"/>
+        android:title=""
+        android:icon="@drawable/icon_pub"
+        app:showAsAction="always"/>
 </menu>

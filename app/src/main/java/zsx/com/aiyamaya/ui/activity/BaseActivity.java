@@ -9,6 +9,9 @@ import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +20,7 @@ import java.util.LinkedList;
 
 import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.item.EmojiItem;
 import zsx.com.aiyamaya.util.MyUtil;
 import zsx.com.aiyamaya.util.SpfUtil;
 
@@ -32,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      */
     private LinkedList<BaseActivity> activityList = new LinkedList<BaseActivity>();
 
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
 
     private TextView toolbarTitle;
 
@@ -65,6 +69,14 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             toolbar.setNavigationIcon(setBackIcon());
             toolbar.setNavigationOnClickListener(setBackClick());
         }
+    }
+
+    /**
+     *
+     * @param Res 资源id
+     */
+    protected void setRight(int Res){
+        toolbar.setRight(Res);
     }
 
     /**
@@ -216,6 +228,35 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         BaseApplication.getAPPInstance().setmUser(null);
         SpfUtil.clearAll();
         goToNext(LoginActivity.class);
+    }
+
+    public SpannableString setEmoji(String text) {
+        SpannableString spannableString = new SpannableString(text);
+        boolean lookend = false;
+        int end = 0;
+        for (int i = text.length()-1; i>=0; i--) {
+            MyUtil.MyLogE(TAG,String.valueOf(text.charAt(i)));
+            if ("]".equals(String.valueOf(text.charAt(i)))) {
+                end = i;
+                lookend = true;
+            }
+            if (lookend && "[".equals(String.valueOf(text.charAt(i)))) {
+                int start = i;
+                String value = text;
+                for (EmojiItem emojiItem : BaseApplication.getEmojiItemList()) {
+                    String str=value.substring(start, end+1);
+                    MyUtil.MyLogE(TAG,str);
+                    if (str.equals(emojiItem.getValue())) {
+                        Drawable d = getDrawableRes(emojiItem.getResId());
+                        d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+                        ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BASELINE);
+                        spannableString.setSpan(span, start, end+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+                }
+                lookend = false;
+            }
+        }
+        return spannableString;
     }
 
     @Override

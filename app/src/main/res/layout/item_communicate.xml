@@ -11,12 +11,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <zsx.com.aiyamaya.ui.widget.CircleImageView
             android:id="@+id/ic_iv_headimg"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/headimg01" />
+            android:src="@drawable/headimg01"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/ic_tv_poster"
@@ -50,8 +51,8 @@
 
         <ImageView
             android:id="@+id/ic_iv_postimg"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/ic_tv_title"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
