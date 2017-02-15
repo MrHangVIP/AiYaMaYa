@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/prise_action"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="#eee"
+    >
+
+    <TextView
+        android:id="@+id/lpa_tv_commit"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="评论"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/icon_comments"
+        android:drawablePadding="5dp"
+        android:layout_weight="1.0"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/underline"></View>
+
+    <TextView
+        android:id="@+id/lpa_tv_prise"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="赞"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/icon_like_nor"
+        android:layout_weight="1.0"/>
+
+</LinearLayout>

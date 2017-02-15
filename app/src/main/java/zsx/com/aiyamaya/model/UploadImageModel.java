@@ -34,10 +34,13 @@ public class UploadImageModel {
         params.put("userPhone",SpfUtil.getString(Constant.LOGIN_USERPHONE,""));
         params.put("token",SpfUtil.getString(Constant.TOKEN,""));
         String imagePath="";
+        int i=0;
         for(String str:path){
-            imagePath= MyUtil.fileBase64String(str)+SpfUtil.getString(Constant.TOKEN,"");
+            i++;
+//          imagePath= MyUtil.fileBase64String(str)+SpfUtil.getString(Constant.TOKEN,"");
+            params.put("image"+i, MyUtil.fileBase64String(str));
         }
-        params.put("image", imagePath);
+//        params.put("image", imagePath);
         OkHttpHelp<ResultItem> httpHelp = OkHttpHelp.getInstance();
         httpHelp.httpRequest("", Constant.IMAGE_UPLOAD_URL, params, new ResponseListener<ResultItem>() {
             @Override

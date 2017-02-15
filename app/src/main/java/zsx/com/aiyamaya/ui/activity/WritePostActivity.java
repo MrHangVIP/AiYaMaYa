@@ -46,6 +46,7 @@ import zsx.com.aiyamaya.ui.widget.RichTextEditor;
 import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.MyUtil;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
+import zsx.com.aiyamaya.util.SpfUtil;
 
 /**
  *
@@ -344,6 +345,7 @@ public class WritePostActivity extends BaseActivity {
         Map<String,String> params=new HashMap<>();
         UserItem userItem=BaseApplication.getAPPInstance().getmUser();
         params.put("userPhone",userItem.getUserPhone());
+        params.put("token", SpfUtil.getString(Constant.TOKEN, ""));
         params.put("title",postBarItem.getTitle());
         params.put("content",postBarItem.getContent());
         params.put("imageUrl",imageUrl);

@@ -1,164 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_main_bg"
-    android:orientation="vertical">
+    android:background="@drawable/img_main_bg">
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/toolbar" />
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/aspd_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:text="帖子标题："
-            android:textColor="#333333"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/aspd_tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/aspd_tv"
-            android:text="xxxxxxxxxxxxxxx"
-            android:textColor="#333333"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/aspd_tv_likecount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/aspd_tv_title"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="21"
-            android:textSize="15dp" />
-
-        <ImageView
-            android:id="@+id/aspd_iv_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aspd_tv_title"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/aspd_tv_likecount"
-            android:src="@drawable/icon_like_selected" />
-
-        <TextView
-            android:id="@+id/aspd_tv_commentcount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aspd_tv_title"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/aspd_iv_like"
-            android:text="10"
-            android:textSize="15dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aspd_tv_title"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/aspd_tv_commentcount"
-            android:src="@drawable/icon_comments" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/aspd_tv_commentcount"
-            android:layout_marginTop="10dp"
-            android:background="#A0A0A0" />
-
-        <ImageView
-            android:id="@+id/aspd_iv_headimg"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/view"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/headimg01" />
-
-        <TextView
-            android:id="@+id/aspd_tv_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/aspd_iv_headimg"
-            android:text="发帖人"
-            android:textColor="#333333"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/aspd_tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/view"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:text="2016-11-02 23:50"
-            android:textColor="#333333" />
-
-        <TextView
-            android:id="@+id/aspd_tv_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aspd_iv_headimg"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:text="宝宝湿疹还是皮炎?宝湿疹还是皮还是皮炎?宝宝湿疹还是皮炎?宝湿疹还是皮还是皮炎?宝宝湿疹还是皮炎?宝湿疹还是皮还是皮炎?宝宝湿疹还是皮炎?宝湿疹还是皮还是皮炎?"
-            android:textColor="#333333"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:id="@+id/aspd_iv_postimg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aspd_tv_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/headimg01" />
-
-        <ImageView
-            android:id="@+id/aspd_iv_dianzan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aspd_iv_postimg"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/icon_dianzan" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/aspd_iv_dianzan"
-            android:layout_marginTop="10dp"
-            android:background="#A0A0A0" />
-
-        <ListView
-            android:id="@+id/aspd_lv_comments"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/aspd_iv_dianzan"
-            android:layout_marginTop="40dp">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/prise_action"
+            android:layout_below="@+id/appbar">
 
-        </ListView>
-    </RelativeLayout>
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0fff"
+                android:orientation="vertical">
 
+                <include layout="@layout/layout_postbar_detail" />
 
-</LinearLayout>
+                <include layout="@layout/layout_prise_num" />
+
+            </android.support.design.widget.AppBarLayout>
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/apd_cycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </android.support.v7.widget.RecyclerView>
+            </ScrollView>
+        </android.support.design.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:id="@+id/prise_action"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="#eee"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/lpa_tv_commit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:drawableLeft="@drawable/icon_comments"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="评论"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/underline"></View>
+
+        <TextView
+            android:id="@+id/lpa_tv_prise"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:drawableLeft="@drawable/icon_like_nor"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="赞"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
