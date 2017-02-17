@@ -33,7 +33,7 @@
 
     <zsx.com.aiyamaya.ui.widget.CircleImageView
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="1000dp"
         android:src="@drawable/headimg01"/>
 
     <FrameLayout

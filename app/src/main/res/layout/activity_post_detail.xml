@@ -9,37 +9,45 @@
         android:id="@+id/appbar"
         layout="@layout/toolbar" />
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/prise_action"
+        android:layout_below="@+id/appbar"
+        android:fillViewport="true">
 
         <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/prise_action"
-            android:layout_below="@+id/appbar">
+            android:layout_height="match_parent">
 
-            <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#0fff"
-                android:orientation="vertical">
-
-                <include layout="@layout/layout_postbar_detail" />
-
-                <include layout="@layout/layout_prise_num" />
-
-            </android.support.design.widget.AppBarLayout>
-
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/apd_cycle"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                android:orientation="vertical">
 
-            </android.support.v7.widget.RecyclerView>
-            </ScrollView>
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#0fff"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/layout_postbar_detail" />
+
+                    <include layout="@layout/layout_prise_num" />
+
+                </android.support.design.widget.AppBarLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/apd_cycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
         </android.support.design.widget.CoordinatorLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/prise_action"
