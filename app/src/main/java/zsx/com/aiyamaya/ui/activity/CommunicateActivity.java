@@ -1,16 +1,27 @@
 package zsx.com.aiyamaya.ui.activity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.gson.Gson;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -29,6 +40,7 @@ import java.util.TimerTask;
 
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.adapter.CommunicateRecyclerViewAdapter;
+import zsx.com.aiyamaya.adapter.IndexPagerAdapter;
 import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ArticleItem;
 import zsx.com.aiyamaya.item.PostBarItem;
@@ -38,13 +50,15 @@ import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
 import zsx.com.aiyamaya.util.SpfUtil;
 
+import static android.R.attr.width;
+
 /**
  * Created by moram on 2016/9/21
  */
 public class CommunicateActivity extends BaseActivity {
     private static final String TAG = "CommunicateActivity";
 
-    private Banner banner;
+    private ViewPager viewPager;
 
     private ArrayList<Integer> imageList;
 
@@ -54,6 +68,27 @@ public class CommunicateActivity extends BaseActivity {
 
     private List<PostBarItem> postBarList = new ArrayList<>();
 
+    private Timer timer;
+
+    private List<View> mPicViews = new ArrayList<>();
+
+    private int index=0;
+
+    private Handler timerHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int count = msg.what;
+            int currentItem = viewPager.getCurrentItem();
+            try {
+                viewPager.setCurrentItem((currentItem + 1) % count, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    };
+
     @Override
     protected void setView() {
         setContentView(R.layout.activity_communicate);
@@ -62,7 +97,7 @@ public class CommunicateActivity extends BaseActivity {
     @Override
     protected void findViews() {
 //        setTitle("分享交流");
-        banner = (Banner) this.findViewById(R.id.ac_bar);
+        viewPager = (ViewPager) this.findViewById(R.id.viewpager);
         communicateRcyView = (RecyclerView) findViewById(R.id.ac_ry_post);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,39 +109,19 @@ public class CommunicateActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        imageList = new ArrayList<Integer>();
+        imageList = new ArrayList<>();
         imageList.add(R.drawable.img_wel1);
         imageList.add(R.drawable.img_wel2);
         imageList.add(R.drawable.img_wel3);
-        //设置banner样式
-        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
-        //设置图片加载器
-        banner.setImageLoader(new CommunicateActivity.GlideImageLoader());
-        //设置图片集合
-        banner.setImages(imageList);
-        //设置banner动画效果
-        banner.setBannerAnimation(Transformer.DepthPage);
-        //设置标题集合（当banner样式有显示title时）
-//        banner.setBannerTitles(titles);
-        //设置自动轮播，默认为true
-        banner.isAutoPlay(true);
-        //设置轮播时间
-        banner.setDelayTime(3000);
-        //设置指示器位置（当banner模式中有指示器时）
-        banner.setIndicatorGravity(BannerConfig.CENTER);
-        //是否允许手动滑动轮播图，默认为true
-        banner.setViewPagerIsScroll(true);
-        //banner设置方法全部调用完毕时最后调用
-        banner.start();
-
         communicateRcyView.setLayoutManager(new LinearLayoutManager(communicateRcyView.getContext()));
-        communicateRcyView.setAdapter(new CommunicateRecyclerViewAdapter(this,postBarList));
+        communicateRcyView.setAdapter(new CommunicateRecyclerViewAdapter(this, postBarList));
 
         if (toolbar != null) {
             toolbar.setNavigationIcon(setBackIcon());
             toolbar.setNavigationOnClickListener(setBackClick());
         }
         getPostBar();
+        setLiveAdapter();
     }
 
     @Override
@@ -122,19 +137,72 @@ public class CommunicateActivity extends BaseActivity {
         }
     }
 
-    public class GlideImageLoader extends ImageLoader {
-        @Override
-        public void displayImage(Context context, Object path, ImageView imageView) {
-            /**
-             注意：
-             1.图片加载器由自己选择，这里不限制，只是提供几种使用方法
-             2.返回的图片路径为Object类型，由于不能确定你到底使用的那种图片加载器，
-             传输的到的是什么格式，那么这种就使用Object接收和返回，你只需要强转成你传输的类型就行，
-             切记不要胡乱强转！
-             */
-//            eg：
-//            Glide 加载图片简单用法
-            Glide.with(context).load((int) path).into(imageView);
+    private void setLiveAdapter() {
+        mPicViews.clear();
+        for (int i = 0, l = imageList.size(); i < l; i++) {
+            View view = LayoutInflater.from(this).inflate(R.layout.viewpager_item_layout, null);
+            ImageView imageView = (ImageView) view.findViewById(R.id.image);
+            TextView cursorPoint = (TextView) view.findViewById(R.id.cursor);
+            loadingImgWithCommon(this, imageList.get(i), R.mipmap.ic_launcher, imageView, (int) width,
+                    (int) (width * .486));
+            mPicViews.add(view);
+            cursorPoint.setTag(imageList.get(i));
+            imageView.setTag(imageList.get(i));
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            });
+        }
+        viewPager.setAdapter(new IndexPagerAdapter(mPicViews));
+        viewPager.setCurrentItem(index);
+        scrollPoint(index);
+        change(imageList.size());
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int arg0) {
+                index = arg0;
+                scrollPoint(arg0);
+                change(imageList.size());
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+
+            }
+        });
+    }
+
+
+    private void change(final int listSize) {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                timerHandler.sendEmptyMessage(listSize);
+
+            }
+        }, 3000, 5000);
+    }
+
+    private void scrollPoint(int new_position) {
+        // 设置首页的底部游标
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < mPicViews.size(); i++) {
+            builder.append("<font color='" + (new_position == i ? "#2f8dd4" : "#ffffff") + "'>● </font>");
+        }
+        if (mPicViews.size() > 1) {
+            ((TextView) mPicViews.get(new_position).findViewById(R.id.cursor)).setText(Html.fromHtml(builder.toString()));
         }
     }
 
@@ -157,14 +225,21 @@ public class CommunicateActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-        banner.startAutoPlay();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        banner.stopAutoPlay();
         super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
     }
 
     public void checkin(View view) {
@@ -175,8 +250,8 @@ public class CommunicateActivity extends BaseActivity {
     private void getPostBar() {
         ProgressDialogUtil.showProgressDialog(this, true);
         OkHttpHelp<ResultItem> okHttpHelp = OkHttpHelp.getInstance();
-        Map<String,String> map=new HashMap<>();
-        map.put("userPhone", SpfUtil.getString(Constant.LOGIN_USERPHONE,""));
+        Map<String, String> map = new HashMap<>();
+        map.put("userPhone", SpfUtil.getString(Constant.LOGIN_USERPHONE, ""));
         okHttpHelp.httpRequest("", Constant.GET_POSTBAR, map, new ResponseListener<ResultItem>() {
             @Override
             public void onSuccess(ResultItem object) {
@@ -193,6 +268,19 @@ public class CommunicateActivity extends BaseActivity {
                         PostBarItem postBarItem = new Gson().fromJson(jsonArray.get(i).toString(), PostBarItem.class);
                         postBarList.add(postBarItem);
                     }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+                    communicateRcyView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            communicateRcyView.setAdapter(new CommunicateRecyclerViewAdapter(mContext, postBarList));
+                        }
+                    });
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -211,6 +299,34 @@ public class CommunicateActivity extends BaseActivity {
         });
 
 
+    }
+
+    private static void loadingImgWithCommon(final Context mContext,
+                                             int  url, final int placeholder, final ImageView img, int width,
+                                             int height) {
+        if (null == img) {
+            return;
+        }
+        Glide.clear(img);
+        Glide.with(mContext)
+                .load(url)
+                .asBitmap()
+                .error(R.mipmap.ic_launcher)
+                .placeholder(R.mipmap.ic_launcher)
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        Log.e(TAG, "onResourceReady: ");
+                        img.setImageBitmap(resource);
+                    }
+
+                    @Override
+                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                        Log.e(TAG, "onLoadFailed: ");
+                        super.onLoadFailed(e, errorDrawable);
+                        img.setImageDrawable(errorDrawable);
+                    }
+                });
     }
 
 }

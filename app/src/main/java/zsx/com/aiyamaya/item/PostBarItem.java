@@ -1,7 +1,9 @@
 package zsx.com.aiyamaya.item;
 
 
-public class PostBarItem {
+import java.io.Serializable;
+
+public class PostBarItem implements Serializable{
 
     private int postbarId;
 

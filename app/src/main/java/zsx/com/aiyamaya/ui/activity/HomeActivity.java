@@ -72,7 +72,7 @@ public class HomeActivity extends BaseActivity {
                 break;
 
             case R.id.iv_shares:
-                if(SpfUtil.getBoolean(Constant.IS_LOGIN,false)&& BaseApplication.getAPPInstance().getmUser()!=null){
+                if(SpfUtil.getBoolean(Constant.IS_LOGIN,false) && BaseApplication.getAPPInstance().getmUser()!=null){
                     jumpToNext(CommunicateActivity.class);
                 }else{
                     toast("请先登录");

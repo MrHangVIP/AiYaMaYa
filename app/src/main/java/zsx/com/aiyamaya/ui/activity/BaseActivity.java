@@ -1,5 +1,6 @@
 package zsx.com.aiyamaya.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -29,6 +30,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     private static final String TAG = "BaseActivity";
 
+    protected Context mContext;
+
     private Toast toast;
 
     /**
@@ -43,6 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext=this;
         activityList.add(this);
 
         setView();

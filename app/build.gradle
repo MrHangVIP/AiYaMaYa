@@ -1,6 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    /**
+     * third app key
+     *
+     *weixin   key:wxf4b8773580a65693
+     *         secret:072da07e38d7a6551f06b7900acf584d
+     *
+     */
+
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
@@ -10,14 +19,30 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfigs {
+            release {
+                //填写之前Eclipse-Build里面的默认路径
+                storeFile file("../aiyamaya.keystore")
+                storePassword "aiyamaya.keystore"
+                keyAlias "aiyamaya.keystore"
+                keyPassword "aiyamaya.keystore"
+//           qianming     b2d47898779087d82c1c129cd7b92b68
+            }
+        }
+
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release
         }
     }
-
     sourceSets {
         main {
             assets.srcDirs = ['assets']
@@ -39,4 +64,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile files('libs/commons-beanutils-1.7.0.jar')
 //    compile 'io.github.rockerhieu:emojicon:1.4.0'
+
 }

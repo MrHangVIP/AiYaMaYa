@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:padding="5dp">
+
+    <zsx.com.aiyamaya.ui.widget.CircleImageView
+        android:id="@+id/ldht_ci_head"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/headimg01"/>
+
+    <TextView
+        android:id="@+id/ldht_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="大家都知道么这件事"
+        android:singleLine="true"
+        android:layout_toLeftOf="@+id/ldht_tv_time"
+        android:layout_marginLeft="8dp"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/ldht_ci_head"/>
+
+    <TextView
+        android:layout_below="@+id/ldht_tv_title"
+        android:id="@+id/ldht_tv_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="songzhihang"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"
+        android:textColor="#f55"
+        android:singleLine="true"
+        android:layout_toRightOf="@+id/ldht_ci_head"/>
+
+    <TextView
+        android:id="@+id/ldht_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="songzhihang"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/ldht_ci_head"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/underline"/>
+
+</RelativeLayout>

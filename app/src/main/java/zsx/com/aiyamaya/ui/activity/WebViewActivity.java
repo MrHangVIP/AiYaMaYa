@@ -5,6 +5,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.util.MyUtil;
 
 public class WebViewActivity extends BaseActivity {
 
@@ -28,6 +29,7 @@ public class WebViewActivity extends BaseActivity {
         Bundle bundle=getIntent().getBundleExtra("bundle");
         String url =bundle.getString("newsUrl");
         setTitle("文章详情");
+        MyUtil.MyLogE(TAG,url);
         webWB.loadUrl(url);
     }
 

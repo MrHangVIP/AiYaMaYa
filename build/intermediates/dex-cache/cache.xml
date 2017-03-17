@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/libs/commons-beanutils-1.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5675fd96b29656504b86029551973d60fb41339b">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/2/commons-beanutils-1.7.0_3884b3b8e9aa46de16007157689b9818ace67be4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_68bb006cb94276a080689a2d23b5a8ebdf99847f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.0.1_fac110d57d820fac2db1210e71815818c213383e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.8.0_4a8c3405533eea3d14109b0519b9ad98b59e3e0b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.0.1_bf379a8c0eb3e87350809c42df14f8f7b8215e70/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="afaa744c3ff6493bdc2b091b6d09754df13174a9">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a613a159c77893936d8c1c10961727f74456bc5c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="ab26ffb44d0a0b02082b72d095c735bfde7c682c">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_78789b2729b43e6db630b45dcf0900cfde9f20d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.0.1_829e8f1d2c9cbd466d19ef84a8128e3e23439fac/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.5.0/4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83/okhttp-3.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.5.0_9724e2351dca9608f9c896a163d6ca4cd8942c6d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/exploded-aar/com.youth.banner/banner/1.4.5/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="08bfe913f62dc87823ea9ea08b82dcf9927ca951">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.youth.banner-banner-1.4.5_8ed143d9a7e319f4314b5c97b1559a1e4a68d1ca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.0.1_dc3d7c9e9598284354e20c89962cf86fa704fc2e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.0.1_ded6e22f7c470f95d8c70acb1a2e4bd9b0d6423a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.1_926e44876e3b1bc6e61c5e44309c68fba4a5371e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.11.0_4a4f9537a1a56d4b338019977b7148eeee3f5241/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/songzhihang/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/songzhihang/Workspace/gitworkspace/AIYAMAYA/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.0.1_2db94bdac800022494d4aa9340f9ca0b447930cc/classes.dex" />
+    </item>
+
+</items>

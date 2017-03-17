@@ -1,12 +1,7 @@
 package zsx.com.aiyamaya.ui.widget;
 
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import za.co.immedia.pinnedheaderlistview.SectionedBaseAdapter;
 
 public class TestSectionedAdapter extends SectionedBaseAdapter {
 
@@ -34,28 +29,28 @@ public class TestSectionedAdapter extends SectionedBaseAdapter {
 
     @Override
     public View getItemView(int section, int position, View convertView, ViewGroup parent) {
-        LinearLayout layout = null;
-        if (convertView == null) {
-            LayoutInflater inflator = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            layout = (LinearLayout) inflator.inflate(R.layout.list_item, null);
-        } else {
-            layout = (LinearLayout) convertView;
-        }
-        ((TextView) layout.findViewById(R.id.textItem)).setText("Section " + section + " Item " + position);
-        return layout;
+//        LinearLayout layout = null;
+//        if (convertView == null) {
+//            LayoutInflater inflator = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            layout = (LinearLayout) inflator.inflate(R.layout.list_item, null);
+//        } else {
+//            layout = (LinearLayout) convertView;
+//        }
+//        ((TextView) layout.findViewById(R.id.textItem)).setText("Section " + section + " Item " + position);
+        return null;
     }
 
     @Override
     public View getSectionHeaderView(int section, View convertView, ViewGroup parent) {
-        LinearLayout layout = null;
-        if (convertView == null) {
-            LayoutInflater inflator = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            layout = (LinearLayout) inflator.inflate(R.layout.header_item, null);
-        } else {
-            layout = (LinearLayout) convertView;
-        }
-        ((TextView) layout.findViewById(R.id.textItem)).setText("Header for section " + section);
-        return layout;
+//        LinearLayout layout = null;
+//        if (convertView == null) {
+//            LayoutInflater inflator = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            layout = (LinearLayout) inflator.inflate(R.layout.header_item, null);
+//        } else {
+//            layout = (LinearLayout) convertView;
+//        }
+//        ((TextView) layout.findViewById(R.id.textItem)).setText("Header for section " + section);
+        return null;
     }
 
 }

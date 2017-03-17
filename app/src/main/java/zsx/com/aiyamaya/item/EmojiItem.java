@@ -10,8 +10,9 @@ import zsx.com.aiyamaya.R;
 
 public class EmojiItem {
 
+    //[可爱]
     private String value;
-
+    //emoji_1
     private String name;
 
     private int resId;

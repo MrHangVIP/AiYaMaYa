@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -36,11 +37,11 @@ public class SettingActivity extends BaseActivity {
 
     private static final String TAG = "SettingActivity";
 
-    public static final int  RESULT_LOGIN=0x20;
+    public static final int RESULT_LOGIN = 0x20;
 
     private TextView loginRegistTV;
-    private ViewGroup loginVG;
-    private ViewGroup myselfVG;
+    private RelativeLayout loginVG;
+    private RelativeLayout myselfVG;
     private CircleImageView headImgCI;
     private TextView nickNameTV;
     private TextView stateTV;
@@ -54,22 +55,22 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void findViews() {
         setTitle("设置");
-        loginVG=(ViewGroup)findViewById(R.id.as_ly_login);
-        myselfVG=(ViewGroup)findViewById(R.id.as_ly_myself);
+        loginVG = (RelativeLayout) findViewById(R.id.as_ly_login);
+        myselfVG = (RelativeLayout) findViewById(R.id.as_ly_myself);
         loginRegistTV = (TextView) findViewById(R.id.tv_login_and_regist);
-        headImgCI=(CircleImageView)findViewById(R.id.lm_ci_headImg);
-        nickNameTV=(TextView)findViewById(R.id.lm_tv_nickname);
-        stateTV=(TextView)findViewById(R.id.lm_tv_state);
-        rpUserLL=(LinearLayout)findViewById(R.id.asl_ll_replaceuser);
+        headImgCI = (CircleImageView) findViewById(R.id.lm_ci_headImg);
+        nickNameTV = (TextView) findViewById(R.id.lm_tv_nickname);
+        stateTV = (TextView) findViewById(R.id.lm_tv_state);
+        rpUserLL = (LinearLayout) findViewById(R.id.asl_ll_replaceuser);
     }
 
     @Override
     protected void initData() {
-        if(SpfUtil.getBoolean(Constant.IS_LOGIN,false)){
+        if (SpfUtil.getBoolean(Constant.IS_LOGIN, false)) {
             myselfVG.setVisibility(View.VISIBLE);
             loginVG.setVisibility(View.GONE);
             setSelfData();
-        }else{
+        } else {
             loginVG.setVisibility(View.VISIBLE);
             myselfVG.setVisibility(View.GONE);
         }
@@ -107,74 +108,88 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(resultCode){
+        switch (resultCode) {
             case RESULT_LOGIN:
                 loginVG.setVisibility(View.GONE);
                 myselfVG.setVisibility(View.VISIBLE);
                 setSelfData();
-            break;
+                break;
         }
 
     }
 
-    private void  setSelfData(){
-        if(BaseApplication.getAPPInstance().getmUser()!=null){
-            UserItem mUser=BaseApplication.getAPPInstance().getmUser();
+    private void setSelfData() {
+        ProgressDialogUtil.showProgressDialog(SettingActivity.this, true);
+        if (BaseApplication.getAPPInstance().getmUser() != null) {
+            UserItem mUser = BaseApplication.getAPPInstance().getmUser();
             nickNameTV.setText(mUser.getNickName());
             stateTV.setText(mUser.getStatus());
-            if(mUser.getHeadUrl()!=null && !"".equals(mUser.getHeadUrl())){
+            if (mUser.getHeadUrl() != null && !"".equals(mUser.getHeadUrl())) {
                 Glide.with(SettingActivity.this)
-                        .load(Constant.DEFAULT_URL+Constant.IMAGE_URL+mUser.getHeadUrl())
+                        .load(Constant.DEFAULT_URL + Constant.IMAGE_URL + mUser.getHeadUrl())
                         .placeholder(R.drawable.img_loading_2)
                         .into(headImgCI);
             }
-        }else{
-            ProgressDialogUtil.showProgressDialog(SettingActivity.this,true);
-            Map<String,String> params=new HashMap<>();
-            params.put("token",SpfUtil.getString(Constant.TOKEN,""));
-            params.put("userPhone",SpfUtil.getString(Constant.LOGIN_USERPHONE,""));
-            OkHttpHelp<ResultItem> httpHelp=OkHttpHelp.getInstance();
-            httpHelp.httpRequest("", Constant.GET_USER_URL, params, new ResponseListener<ResultItem>() {
-                @Override
-                public void onSuccess(ResultItem object) {
-                    ProgressDialogUtil.dismissProgressdialog();
-                    if("fail".equals(object.getResult())){
-                        if("token error".equals(object.getData())){
-                            toast("token失效,请重新登录");
-                            tokenError();
-                            finish();
+            ProgressDialogUtil.dismissProgressdialog();
+        }
+        getUserData();
+    }
+
+    private void getUserData() {
+        Map<String, String> params = new HashMap<>();
+        params.put("token", SpfUtil.getString(Constant.TOKEN, ""));
+        params.put("userPhone", SpfUtil.getString(Constant.LOGIN_USERPHONE, ""));
+        OkHttpHelp<ResultItem> httpHelp = OkHttpHelp.getInstance();
+        httpHelp.httpRequest("", Constant.GET_USER_URL, params, new ResponseListener<ResultItem>() {
+                    @Override
+                    public void onSuccess(ResultItem object) {
+                        if ("fail".equals(object.getResult())) {
+                            if ("token error".equals(object.getData())) {
+                                toast("token失效,请重新登录");
+                                tokenError();
+                                finish();
+                            }
+                        } else {
+                            JSONObject userJson = null;
+                            try {
+                                userJson = new JSONObject(object.getData());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            UserItem userItem = (new Gson()).fromJson(userJson.toString(), UserItem.class);
+                            if (BaseApplication.getAPPInstance().getmUser() == null) {
+                                UserItem mUser = userItem;
+                                nickNameTV.setText(mUser.getNickName());
+                                stateTV.setText(mUser.getStatus());
+                                if (mUser.getHeadUrl() != null && !"".equals(mUser.getHeadUrl())) {
+                                    Glide.with(SettingActivity.this)
+                                            .load(Constant.DEFAULT_URL + Constant.IMAGE_URL + mUser.getHeadUrl())
+                                            .placeholder(R.drawable.img_loading_2)
+                                            .into(headImgCI);
+                                }
+                                ProgressDialogUtil.dismissProgressdialog();
+                            }
+                            BaseApplication.getAPPInstance().setmUser(userItem);
                         }
-                    }else{
-                        JSONObject userJson = null;
-                        try {
-                            userJson = new JSONObject(object.getData());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        UserItem userItem = (new Gson()).fromJson(userJson.toString(), UserItem.class);
-                        BaseApplication.getAPPInstance().setmUser(userItem);
-                        setSelfData();
+                    }
+
+                    @Override
+                    public void onFailed(String message) {
+                        ProgressDialogUtil.dismissProgressdialog();
+                    }
+
+                    @Override
+                    public Class getEntityClass() {
+                        return ResultItem.class;
                     }
                 }
 
-                @Override
-                public void onFailed(String message) {
-                    ProgressDialogUtil.dismissProgressdialog();
-                }
-
-                @Override
-                public Class getEntityClass() {
-                    return ResultItem.class;
-                }
-            });
-
-
-        }
+        );
     }
 
     @Override
     protected void onDestroy() {
-        MyUtil.MyLogE(TAG,"onDestroy");
+        MyUtil.MyLogE(TAG, "onDestroy");
         super.onDestroy();
     }
 }
