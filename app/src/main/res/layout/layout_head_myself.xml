@@ -11,7 +11,7 @@
         android:layout_height="80dp"
         android:src="@drawable/img_loading_2"
         app:civ_border_color="@color/underline_content"
-        app:civ_border_width="5dp"
+        app:civ_border_width="1dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         />

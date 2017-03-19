@@ -2,6 +2,7 @@ package zsx.com.aiyamaya.ui.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import zsx.com.aiyamaya.R;
+import zsx.com.aiyamaya.util.Constant;
 
 /**
  * @discription
@@ -53,7 +55,8 @@ public class CusListView extends ListView {
 
         LinearLayout titleHead=new LinearLayout(context);
         showView= LayoutInflater.from(context).inflate(R.layout.comment_bottom_layout,null);
-        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,100);
+        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int) Constant.getScreenDIS(context)*50);
+        titleHead.setGravity(Gravity.CENTER_VERTICAL);
         titleHead.addView(showView,params);
 
         LinearLayout headLayout=new LinearLayout(context);

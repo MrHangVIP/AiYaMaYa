@@ -13,12 +13,23 @@ package zsx.com.aiyamaya.ui.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.item.ShareItem;
@@ -33,11 +44,13 @@ public class ShareDialog extends Dialog implements View.OnClickListener, ShareIt
 
 	private String TAG = ShareDialog.class.getSimpleName();
 	BaseActivity mActivity;
+	private Context mContext;
 	ShareItem item1,item2,item3,item4,item5;
 	Button cancelView;
 	public ShareDialog(Activity activity) {
 		super(activity, R.style.TimeDialog);
 		this.mActivity = (BaseActivity)activity;
+		mContext=activity;
 		View view = LayoutInflater.from(activity).inflate(R.layout.dialog_share, null);
 		item1 = (ShareItem) view.findViewById(R.id.item_1);
 		item2 = (ShareItem) view.findViewById(R.id.item_2);
@@ -90,22 +103,83 @@ public class ShareDialog extends Dialog implements View.OnClickListener, ShareIt
 
 		switch (view.getId()){
 			case R.id.item_1:
-				mActivity.toast("微信");
+//				mActivity.toast("微信");
+				new ShareAction((BaseActivity) mContext).setPlatform(SHARE_MEDIA.WEIXIN).withText("爱芽妈芽").setCallback(umShareListener).share();
 				break;
 			case R.id.item_2:
-				mActivity.toast("朋友圈");
+//				mActivity.toast("朋友圈");
+				new ShareAction((BaseActivity) mContext).setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).withText("爱芽妈芽").setCallback(umShareListener).share();
 				break;
 			case R.id.item_3:
-				mActivity.toast("空间");
+//				mActivity.toast("空间");
+				new ShareAction((BaseActivity) mContext).setPlatform(SHARE_MEDIA.QZONE).withText("爱芽妈芽").setCallback(umShareListener).share();
 				break;
 			case R.id.item_4:
-				mActivity.toast("QQ");
+//				mActivity.toast("QQ");
+				//目前不支持纯文本，应该是友盟的bug
+				Resources res=mActivity.getResources();
+				Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.img_state_baby);
+				new ShareAction((BaseActivity) mContext).setPlatform(SHARE_MEDIA.QQ).withText("爱芽妈芽")
+						.withMedia(new UMImage(mContext,bmp)).setCallback(umShareListener).share();
 				break;
 			case R.id.item_5:
-				mActivity.toast("微博");
+//				mActivity.toast("微博");
+				new ShareAction((BaseActivity) mContext).setPlatform(SHARE_MEDIA.SINA).withText("爱芽妈芽").setCallback(umShareListener).share();
 				break;
 
 		}
 		dismiss();
+	}
+
+	private UMShareListener umShareListener = new UMShareListener() {
+		@Override
+		public void onStart(SHARE_MEDIA share_media) {
+
+		}
+
+		@Override
+		public void onResult(SHARE_MEDIA platform) {
+			Toast.makeText(mContext, getPlatform(platform) + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+		}
+
+		@Override
+		public void onError(SHARE_MEDIA platform, Throwable t) {
+			Toast.makeText(mContext, getPlatform(platform) + " 分享失败啦", Toast.LENGTH_SHORT).show();
+			if (t != null) {
+				Log.d("throw", "throw:" + t.getMessage());
+			}
+		}
+
+		@Override
+		public void onCancel(SHARE_MEDIA platform) {
+			Toast.makeText(mContext,  getPlatform(platform) + " 分享取消了", Toast.LENGTH_SHORT).show();
+		}
+	};
+
+	private String getPlatform(SHARE_MEDIA media){
+		String platformStr = "";
+		switch (media) {
+			case WEIXIN:
+				platformStr = "微信";
+				break;
+
+			case WEIXIN_CIRCLE:
+				platformStr = "朋友圈";
+				break;
+
+			case QQ:
+				platformStr = "QQ";
+				break;
+
+			case QZONE:
+				platformStr = "QQ空间";
+				break;
+
+			case SINA:
+				platformStr = "微博";
+				break;
+		}
+		return platformStr;
 	}
 }

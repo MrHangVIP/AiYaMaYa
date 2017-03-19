@@ -159,6 +159,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
             if (orderarr[i].equals("1")) {
                 String url = imagearr[imageCount];
                 myRichView.createImageView(Constant.DEFAULT_URL + Constant.IMAGE_URL + url);
+                imageCount++;
             }
 
         }

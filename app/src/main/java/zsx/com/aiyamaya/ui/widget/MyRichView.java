@@ -7,6 +7,8 @@ import android.text.SpannableString;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -78,7 +80,11 @@ public class MyRichView extends LinearLayout{
                 .into(imageView);
         imageView.setPadding(0,defaultPadding,0,defaultPadding);
         allLayout.addView(imageView);
+        View lineView=new View(context);
+        LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,2);
+        lineView.setBackgroundResource(R.color.underline);
         allLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+        allLayout.addView(lineView,params);
         return imageView;
     }
 

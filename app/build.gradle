@@ -32,7 +32,7 @@ android {
 
     }
     buildTypes {
-        release {
+            release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
@@ -46,6 +46,7 @@ android {
     sourceSets {
         main {
             assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
         }
     }
 }
@@ -63,6 +64,8 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile files('libs/commons-beanutils-1.7.0.jar')
-//    compile 'io.github.rockerhieu:emojicon:1.4.0'
-
+    //    compile 'io.github.rockerhieu:emojicon:1.4.0'
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_shareview.jar')
 }

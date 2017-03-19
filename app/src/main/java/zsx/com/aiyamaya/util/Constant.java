@@ -2,6 +2,7 @@ package zsx.com.aiyamaya.util;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -14,7 +15,8 @@ import zsx.com.aiyamaya.BaseApplication;
 public class Constant {
 
 
-    public static final String DEFAULT_URL="http://10.0.5.201:8080/zsxbishe";
+//    public static final String DEFAULT_URL="http://10.0.5.201:8080/zsxbishe";
+    public static final String DEFAULT_URL="http://192.168.1.106:8080/Bishe";
 
     public static final String IMAGE_URL="/image/";
 
@@ -66,6 +68,20 @@ public class Constant {
                 .getSystemService(Context.WINDOW_SERVICE);
         Display display = manager.getDefaultDisplay();
         return display.getHeight();
+    }
+
+    //屏幕密度
+    public static float getScreenDIS(Context context) {
+        WindowManager manager = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        Display display = manager.getDefaultDisplay();
+        DisplayMetrics metric = new DisplayMetrics();
+        display.getMetrics(metric);
+        int width = metric.widthPixels;  // 屏幕宽度（像素）
+        int height = metric.heightPixels;  // 屏幕高度（像素）
+        float density = metric.density;
+        Log.e("DIS",density+"");
+        return density;
     }
 
     /*****
