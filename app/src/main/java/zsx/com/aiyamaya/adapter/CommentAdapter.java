@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.MyUtil;
+
 /**
  * @discription
  * @autor songzhihang
@@ -45,7 +48,7 @@ public class CommentAdapter extends BaseAdapter{
             RelativeLayout layout=new RelativeLayout(context);
 
             TextView textView = new TextView(context);
-            RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,1000);
+            RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, Constant.getScreenHeight(context));
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
             textView.setText("快来发表你的评论吧");
             textView.setTextSize(15);
