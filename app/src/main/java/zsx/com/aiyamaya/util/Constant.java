@@ -67,6 +67,16 @@ public class Constant {
         Display display = manager.getDefaultDisplay();
         return display.getHeight();
     }
+    //获取屏幕的分辨率
+    public static float getScreenDensity(Context context) {
+        WindowManager manager = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        Display display = manager.getDefaultDisplay();
+        DisplayMetrics dm = new DisplayMetrics();
+        display.getMetrics(dm);
+        return dm.density;
+    }
+
 
     /*****
      * 系统相册（包含有 照相、选择本地图片）

@@ -70,6 +70,7 @@ public class GuideActivity extends BaseActivity {
         //是否允许手动滑动轮播图，默认为true
         banner.setViewPagerIsScroll(true);
         //banner设置方法全部调用完毕时最后调用
+        banner.setOffscreenPageLimit(imageList.size());
         banner.start();
 
     }
