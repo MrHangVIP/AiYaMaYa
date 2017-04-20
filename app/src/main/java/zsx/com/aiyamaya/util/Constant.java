@@ -15,8 +15,8 @@ import zsx.com.aiyamaya.BaseApplication;
 public class Constant {
 
 
-//    public static final String DEFAULT_URL="http://10.0.5.201:8080/zsxbishe";
-    public static final String DEFAULT_URL="http://192.168.1.106:8080/Bishe";
+    public static final String DEFAULT_URL="http://10.0.5.201:8080/zsxbishe";
+//    public static final String DEFAULT_URL="http://192.168.1.106:8080/Bishe";
 
     public static final String IMAGE_URL="/image/";
 
@@ -30,7 +30,8 @@ public class Constant {
     public static final String GET_RANDOM_ARTICLE="/GetRandomArticle";
     public static final String GET_TYPE_ARTICLE="/GetTypeArticle";
     public static final String WRITE_POSTBAR="/WritePostBar";
-    public static final String GET_POSTBAR="/GetPostBar";
+    public static final String GET_POSTBAR="/GetPostList";
+    public static final String LIKE_POSTBAR="/LikePostbar";
 
 
 

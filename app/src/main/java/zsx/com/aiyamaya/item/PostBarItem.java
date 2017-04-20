@@ -23,6 +23,12 @@ public class PostBarItem implements Serializable{
 
     private String orders;
 
+    private String hasLike;
+
+    private String commentNums;
+
+    private String likeNums;
+
     public int getPostbarId() {
         return postbarId;
     }
@@ -95,4 +101,27 @@ public class PostBarItem implements Serializable{
         this.orders = orders;
     }
 
+    public String getHasLike() {
+        return hasLike;
+    }
+
+    public void setHasLike(String hasLike) {
+        this.hasLike = hasLike;
+    }
+
+    public String getCommentNums() {
+        return commentNums;
+    }
+
+    public void setCommentNums(String commentNums) {
+        this.commentNums = commentNums;
+    }
+
+    public String getLikeNums() {
+        return likeNums;
+    }
+
+    public void setLikeNums(String likeNums) {
+        this.likeNums = likeNums;
+    }
 }

@@ -62,11 +62,13 @@
         //图片部分
 
         <LinearLayout
+            android:id="@+id/ic_ll_image_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="3dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/ic_iv_postimg1"
@@ -100,6 +102,19 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/ic_tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:maxLines="5"
+            android:textSize="16sp"
+            android:textColor="#888888"
+            android:layout_marginLeft="5dp"
+            android:ellipsize="middle"
+            android:visibility="gone"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -113,9 +128,11 @@
             android:padding="3dp">
 
             <RelativeLayout
+                android:id="@+id/ic_rl_like"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.0">
+                android:layout_weight="1.0"
+                >
 
                 <TextView
                     android:id="@+id/ic_tv_likecount"
@@ -142,6 +159,7 @@
                 android:background="@color/underline" />
 
             <RelativeLayout
+                android:id="@+id/ic_rl_comment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -157,6 +175,7 @@
                     android:textSize="15dp" />
 
                 <ImageView
+                    android:id="@+id/ic_iv_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

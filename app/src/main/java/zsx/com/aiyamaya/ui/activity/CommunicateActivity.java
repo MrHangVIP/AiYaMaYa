@@ -64,8 +64,6 @@ public class CommunicateActivity extends BaseActivity {
 
     private RecyclerView communicateRcyView;
 
-    private Toolbar toolbar;
-
     private List<PostBarItem> postBarList = new ArrayList<>();
 
     private Timer timer;
@@ -99,7 +97,6 @@ public class CommunicateActivity extends BaseActivity {
 //        setTitle("分享交流");
         viewPager = (ViewPager) this.findViewById(R.id.viewpager);
         communicateRcyView = (RecyclerView) findViewById(R.id.ac_ry_post);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -111,8 +108,8 @@ public class CommunicateActivity extends BaseActivity {
     protected void initData() {
         imageList = new ArrayList<>();
         imageList.add(R.drawable.img_wel1);
-        imageList.add(R.drawable.img_wel2);
-        imageList.add(R.drawable.img_wel3);
+//        imageList.add(R.drawable.img_wel2);
+//        imageList.add(R.drawable.img_wel3);
         communicateRcyView.setLayoutManager(new LinearLayoutManager(communicateRcyView.getContext()));
         communicateRcyView.setAdapter(new CommunicateRecyclerViewAdapter(this, postBarList));
 
