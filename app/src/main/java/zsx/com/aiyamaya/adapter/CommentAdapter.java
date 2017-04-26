@@ -9,6 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
+import zsx.com.aiyamaya.item.CommentItem;
+import zsx.com.aiyamaya.item.PostBarItem;
 import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.MyUtil;
 
@@ -20,24 +24,26 @@ import zsx.com.aiyamaya.util.MyUtil;
 public class CommentAdapter extends BaseAdapter{
     private static final String TAG = "CommentAdapter";
     private Context context;
+    private List<CommentItem> commentList;
 
-    public CommentAdapter(Context context){
+    public CommentAdapter(Context context, List<CommentItem> commentList){
         this.context=context;
+        this.commentList=commentList;
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return commentList==null ? 0 : commentList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return commentList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override

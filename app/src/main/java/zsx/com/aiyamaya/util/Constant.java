@@ -32,6 +32,8 @@ public class Constant {
     public static final String WRITE_POSTBAR="/WritePostBar";
     public static final String GET_POSTBAR="/GetPostList";
     public static final String LIKE_POSTBAR="/LikePostbar";
+    public static final String WRITE_COMMENT="/WriteComment";
+    public static final String GET_COMMENT="/GetCommentList";
 
 
 

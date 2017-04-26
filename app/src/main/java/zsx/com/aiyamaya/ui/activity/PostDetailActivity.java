@@ -1,5 +1,6 @@
 package zsx.com.aiyamaya.ui.activity;
 
+import android.app.ProgressDialog;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.google.gson.internal.ObjectConstructor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +38,7 @@ import zsx.com.aiyamaya.adapter.CommentAdapter;
 import zsx.com.aiyamaya.adapter.HomeArticleAdapter;
 import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ArticleItem;
+import zsx.com.aiyamaya.item.CommentItem;
 import zsx.com.aiyamaya.item.EmojiItem;
 import zsx.com.aiyamaya.item.PostBarItem;
 import zsx.com.aiyamaya.item.ResultItem;
@@ -73,6 +76,8 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
 
     private TextView comment_num3;
     private TextView comment_num;
+
+    private List<CommentItem> commentList;
 
 
 
@@ -127,7 +132,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
     protected void initData() {
         postBarItem = (PostBarItem) getIntent().getSerializableExtra("postdetail");
         getData();
-        cusListView.setAdapter(new CommentAdapter(this));
+        cusListView.setAdapter(new CommentAdapter(this,commentList));
         nickNameTV.setText(postBarItem.getNickName());
         titleTV.setText(postBarItem.getTitle());
         timeTV.setText(postBarItem.getCreateTime());
@@ -144,6 +149,19 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
             @Override
             public void onClick(View v) {
                 //显示底部
+                comment_layout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        sendTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String content=commentET.getText().toString();
+                if(TextUtils.isEmpty(content)){
+                   toast("不能唯恐哦~");
+                    return ;
+                }
+                writeComment(content);
             }
         });
     }
@@ -245,6 +263,37 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
 
+    }
+
+
+    private void writeComment(String content){
+        ProgressDialogUtil.showProgressDialog(mContext,true);
+        Map<String,String> params =new HashMap<>();
+        params.put("postbarId",postBarItem.getPostbarId()+"");
+        params.put("userPhone",Constant.LOGIN_USERPHONE);
+        params.put("content",content);
+        OkHttpHelp<ResultItem> okHttpHelp=OkHttpHelp.getInstance();
+        okHttpHelp.httpRequest("",Constant.WRITE_COMMENT,params, new ResponseListener<ResultItem>() {
+            @Override
+            public void onSuccess(ResultItem object) {
+                ProgressDialogUtil.dismissProgressdialog();
+                if(object!=null){
+                    if("success".equals(object.getResult())){
+                        toast("發表成功！");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailed(String message) {
+                ProgressDialogUtil.dismissProgressdialog();
+            }
+
+            @Override
+            public Class<ResultItem> getEntityClass() {
+                return ResultItem.class;
+            }
+        });
     }
 }
 
