@@ -41,6 +41,8 @@
         <activity android:name=".ui.activity.StateSelectActivity" />
         <activity android:name=".ui.activity.MyselfActivity" />
         <activity android:name=".ui.activity.WebViewActivity"></activity>
+        <activity android:name=".ui.activity.ToolsActivity"></activity>
+        <activity android:name=".ui.activity.ToolsDetailActivity"></activity>
 
 
         <!-- 微信-->

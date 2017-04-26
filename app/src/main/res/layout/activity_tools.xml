@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_main_bg">
+
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/at_btn_tools1"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="tools1"/>
+
+        <Button
+            android:id="@+id/at_btn_tools2"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="tools2"/>
+
+        <Button
+            android:id="@+id/at_btn_tools3"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="tools3"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/at_btn_tools4"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="tools4"/>
+
+        <Button
+            android:id="@+id/at_btn_tools5"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="tools5"/>
+
+        <Button
+            android:id="@+id/at_btn_tools6"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="tools6"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
