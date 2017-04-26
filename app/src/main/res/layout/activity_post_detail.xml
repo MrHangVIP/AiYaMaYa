@@ -24,7 +24,7 @@
         android:layout_below="@+id/appbar"
         android:orientation="vertical"
         android:background="#eee"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <View
             android:layout_width="match_parent"
@@ -108,6 +108,12 @@
             android:background="@color/underline" />
 
     </LinearLayout>
+
+    <include
+        android:id="@+id/comment_layout"
+        layout="@layout/dialog_comment_layout"
+        android:visibility="gone"
+        />
 
     <!--<include layout="@layout/comment_bottom_layout"-->
     <!--android:layout_width="match_parent"-->

@@ -10,6 +10,7 @@ import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -56,11 +57,23 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
     private CusListView cusListView;
     private LinearLayout commentRL;
     private MyRichView myRichView;
+    private View showView;
     private PostBarItem postBarItem;
     private CircleImageView headImgCI;
     private TextView nickNameTV;
     private TextView titleTV;
     private TextView timeTV;
+    //评论view
+    private LinearLayout commentLL;
+    private View topView;
+    private EditText commentET;
+    private TextView sendTV;
+    private RelativeLayout comment_layout;
+
+
+    private TextView comment_num3;
+    private TextView comment_num;
+
 
 
     @Override
@@ -80,11 +93,33 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
         setTitle("帖子详情");
         cusListView = (CusListView) findViewById(R.id.acd_lv_listview);
         commentRL = (LinearLayout) findViewById(R.id.comment);
+        comment_num = (TextView) findViewById(R.id.comment_num3);
+
         myRichView = cusListView.getMyRichView();
+        //richView中的View
+        //titleView中的View
         headImgCI = (CircleImageView) cusListView.getTitleView().findViewById(R.id.ldht_ci_head);
         nickNameTV = (TextView) cusListView.getTitleView().findViewById(R.id.ldht_tv_nickname);
         titleTV = (TextView) cusListView.getTitleView().findViewById(R.id.ldht_tv_title);
         timeTV = (TextView) cusListView.getTitleView().findViewById(R.id.ldht_tv_time);
+
+        showView = cusListView.getShowView();
+        //showView中的View
+        showView.findViewById(R.id.comment_create_layout3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //显示底部
+            }
+        });
+        comment_num3 = (TextView) showView.findViewById(R.id.comment_num3);
+
+        //底部评论编辑
+        comment_layout = (RelativeLayout) findViewById(R.id.comment_layout);
+        comment_layout.setVisibility(View.GONE);
+        commentLL = (LinearLayout) findViewById(R.id.dcl_ll_bottom);
+        topView = findViewById(R.id.dcl_view);
+        commentET = (EditText) findViewById(R.id.dcl_et_comment);
+        sendTV = (TextView) findViewById(R.id.dcl_tv_send);
 
     }
 
@@ -105,6 +140,12 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
     @Override
     protected void setListener() {
         cusListView.setOnScrollListener(this);
+        findViewById(R.id.comment_create_layout3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //显示底部
+            }
+        });
     }
 
     @Override
@@ -137,7 +178,8 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
                         Log.e(TAG, "getData: " + matcher.group());
                     }
                     int pos = 0;
-                    RESTART:  for (int j=0; j<ls.size(); j++) {
+                    RESTART:
+                    for (int j = 0; j < ls.size(); j++) {
                         for (EmojiItem item : emojiList) {
                             if (item.getValue().equals(ls.get(j))) {
                                 pos = str.indexOf("]", pos);
@@ -145,9 +187,9 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
                                 Drawable d = getDrawableRes(id);
                                 d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
                                 ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BASELINE);
-                                spannableString.setSpan(span, pos-ls.get(j).length() +1, pos+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                spannableString.setSpan(span, pos - ls.get(j).length() + 1, pos + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                                 pos = pos + 1;
-                                MyUtil.MyLogE(TAG,pos+item.getName());
+                                MyUtil.MyLogE(TAG, pos + item.getName());
                                 continue RESTART;
                             }
                         }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:id="@+id/comment_layout"
+    android:layout_height="match_parent"
+    android:background="#0000000">
+
+
+    <View
+        android:id="@+id/dcl_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/dcl_ll_bottom"
+        />
+
+    <LinearLayout
+        android:background="@color/white"
+        android:id="@+id/dcl_ll_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_weight="7.0"
+            android:id="@+id/dcl_et_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="5"
+            android:background="@null"
+            android:hint="写出你的评论~"/>
+
+        <TextView
+            android:id="@+id/dcl_tv_send"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="@drawable/text_color"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
