@@ -5,12 +5,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/img_main_bg"
     android:orientation="vertical" >
-    
-    <com.example.layoutdemo.TitleBar 
-        android:id="@+id/aha_tb_title"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp">
-    </com.example.layoutdemo.TitleBar>
+
+    <include layout="@layout/toolbar" />
     
 <LinearLayout 
     android:orientation="horizontal"
