@@ -1,15 +1,20 @@
 package zsx.com.aiyamaya.ui.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,6 +40,7 @@ import java.util.regex.Pattern;
 import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.adapter.CommentAdapter;
+import zsx.com.aiyamaya.adapter.CommunicateRecyclerViewAdapter;
 import zsx.com.aiyamaya.adapter.HomeArticleAdapter;
 import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ArticleItem;
@@ -48,6 +54,7 @@ import zsx.com.aiyamaya.ui.widget.CusListView;
 import zsx.com.aiyamaya.ui.widget.MyFullLayoutManager;
 import zsx.com.aiyamaya.ui.widget.MyRichView;
 import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.DateUtil;
 import zsx.com.aiyamaya.util.MyUtil;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
 
@@ -71,26 +78,20 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
     private View topView;
     private EditText commentET;
     private TextView sendTV;
+    private TextView cancleTV;
     private RelativeLayout comment_layout;
 
 
     private TextView comment_num3;
     private TextView comment_num;
 
-    private List<CommentItem> commentList;
-
+    private List<CommentItem> commentList=new ArrayList<>();
+    public CommentAdapter commentAdapter=new CommentAdapter(mContext,commentList);
 
 
     @Override
     protected void setView() {
         setContentView(R.layout.activity_post_detail);
-//        ProgressDialogUtil.showProgressDialog(this, false);
-//        new Timer().schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                ProgressDialogUtil.dismissProgressdialog();
-//            }
-//        }, 2000);
     }
 
     @Override
@@ -109,13 +110,6 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
         timeTV = (TextView) cusListView.getTitleView().findViewById(R.id.ldht_tv_time);
 
         showView = cusListView.getShowView();
-        //showView中的View
-        showView.findViewById(R.id.comment_create_layout3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //显示底部
-            }
-        });
         comment_num3 = (TextView) showView.findViewById(R.id.comment_num3);
 
         //底部评论编辑
@@ -125,6 +119,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
         topView = findViewById(R.id.dcl_view);
         commentET = (EditText) findViewById(R.id.dcl_et_comment);
         sendTV = (TextView) findViewById(R.id.dcl_tv_send);
+        cancleTV = (TextView) findViewById(R.id.dcl_tv_cancle);
 
     }
 
@@ -140,6 +135,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
                 .load(Constant.DEFAULT_URL + Constant.IMAGE_URL + postBarItem.getHeadUrl())
                 .placeholder(R.drawable.img_loading_2)
                 .into(headImgCI);
+        getCommentList();
     }
 
     @Override
@@ -153,17 +149,67 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
             }
         });
 
+        commentRL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comment_layout.setVisibility(View.VISIBLE);
+            }
+        });
+
         sendTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String content=commentET.getText().toString();
                 if(TextUtils.isEmpty(content)){
-                   toast("不能唯恐哦~");
                     return ;
                 }
                 writeComment(content);
+                hideInput(view);
+                comment_layout.setVisibility(View.GONE);
+                commentET.setText("");
             }
         });
+
+        cancleTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideInput(v);
+                comment_layout.setVisibility(View.GONE);
+                commentET.setText("");
+            }
+        });
+
+        topView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideInput(v);
+                comment_layout.setVisibility(View.GONE);
+                commentET.setText("");
+            }
+        });
+
+        commentET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if("".equals(commentET.getText())){
+                    sendTV.setTextColor(Color.parseColor("#cccccc"));
+                }else{
+                    sendTV.setTextColor(Color.parseColor("#333333"));
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -266,7 +312,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
     }
 
 
-    private void writeComment(String content){
+    private void writeComment(final String content){
         ProgressDialogUtil.showProgressDialog(mContext,true);
         Map<String,String> params =new HashMap<>();
         params.put("postbarId",postBarItem.getPostbarId()+"");
@@ -279,11 +325,20 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
                 ProgressDialogUtil.dismissProgressdialog();
                 if(object!=null){
                     if("success".equals(object.getResult())){
-                        toast("發表成功！");
+                        toast("发送成功！");
+                        CommentItem comment=new CommentItem();
+                        comment.setContent(content);
+                        comment.setPostbarId(postBarItem.getPostbarId());
+                        comment.setCreateTime(DateUtil.getCurrentDate());
+                        comment.setHeadUrl(postBarItem.getHeadUrl());
+                        comment.setNickName(postBarItem.getNickName());
+                        comment.setUserPhone(postBarItem.getUserPhone());
+                        List<CommentItem> commentList=new ArrayList<CommentItem>();
+                        commentList.add(comment);
+                        commentAdapter.appendData(commentList);
                     }
                 }
             }
-
             @Override
             public void onFailed(String message) {
                 ProgressDialogUtil.dismissProgressdialog();
@@ -294,6 +349,59 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
                 return ResultItem.class;
             }
         });
+    }
+
+    private void getCommentList(){
+        ProgressDialogUtil.showProgressDialog(mContext,true);
+        Map<String,String> params =new HashMap<>();
+        params.put("postbarId",postBarItem.getPostbarId()+"");
+        OkHttpHelp<ResultItem> okHttpHelp=OkHttpHelp.getInstance();
+        okHttpHelp.httpRequest("",Constant.GET_COMMENT,params, new ResponseListener<ResultItem>() {
+
+            @Override
+            public void onSuccess(ResultItem object) {
+                ProgressDialogUtil.dismissProgressdialog();
+                if ("fail".equals(object.getResult())) {
+                    toast("网络错误，请重试！");
+                    return;
+                }
+                JSONArray jsonArray = null;
+                commentList.clear();
+                try {
+                    jsonArray = new JSONArray(object.getData());
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        CommentItem comment = new Gson().fromJson(jsonArray.get(i).toString(), CommentItem.class);
+                        commentList.add(comment);
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+                    commentAdapter=new CommentAdapter(mContext, commentList);
+                    cusListView.setAdapter(commentAdapter);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailed(String message) {
+                ProgressDialogUtil.dismissProgressdialog();
+            }
+
+            @Override
+            public Class<ResultItem> getEntityClass() {
+                return ResultItem.class;
+            }
+        });
+    }
+
+    private void hideInput(View v) {
+        InputMethodManager imm = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 }
 

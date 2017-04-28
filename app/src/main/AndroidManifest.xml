@@ -35,7 +35,8 @@
         <activity android:name=".ui.activity.UpdatePassActivity" />
         <activity android:name=".ui.activity.ArticleActivity" />
         <activity android:name=".ui.activity.CommunicateActivity" />
-        <activity android:name=".ui.activity.PostDetailActivity" />
+        <activity android:name=".ui.activity.PostDetailActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.activity.WritePostActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.activity.StateSelectActivity" />

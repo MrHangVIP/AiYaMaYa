@@ -31,6 +31,13 @@ public class CommentAdapter extends BaseAdapter{
         this.commentList=commentList;
     }
 
+    public void appendData(List<CommentItem> commentList){
+        if(commentList!=null){
+            this.commentList.addAll(commentList);
+        }
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return commentList==null ? 0 : commentList.size();
