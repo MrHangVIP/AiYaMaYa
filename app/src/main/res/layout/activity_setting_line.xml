@@ -74,6 +74,7 @@
 		android:background="@color/underline_content"/>
 
 	<LinearLayout
+		android:id="@+id/asl_ll_update"
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/height_h"
 		android:orientation="horizontal">

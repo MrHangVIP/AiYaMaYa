@@ -1,6 +1,8 @@
 package zsx.com.aiyamaya.item;
 
-public class ArticleItem {
+import java.io.Serializable;
+
+public class ArticleItem implements Serializable{
 	
 	private int id;
 	

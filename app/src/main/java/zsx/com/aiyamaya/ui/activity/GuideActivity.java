@@ -72,7 +72,6 @@ public class GuideActivity extends BaseActivity {
         //banner设置方法全部调用完毕时最后调用
         banner.setOffscreenPageLimit(imageList.size());
         banner.start();
-
     }
 
     @Override
@@ -105,12 +104,12 @@ public class GuideActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id._ag_iv_start:
+                SpfUtil.saveBoolean(Constant.IS_FIRST,true);
                 if(SpfUtil.getBoolean(Constant.IS_LOGIN,false)){
                     goToNext(HomeActivity.class);
                 }else{
                     goToNext(StateSelectActivity.class);
                 }
-
                 break;
 
         }
@@ -148,6 +147,14 @@ public class GuideActivity extends BaseActivity {
 //            return simpleDraweeView;
 //        }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!SpfUtil.getBoolean(Constant.IS_FIRST,false)){
+            goToNext(HomeActivity.class);
+        }
     }
 
     @Override

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingLeft="8dp">
+
+
+    <zsx.com.aiyamaya.ui.widget.CircleImageView
+        android:id="@+id/icl_cv_headimg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/img_loading_3"
+        android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+        android:id="@+id/icl_rl_layout"
+        android:layout_toRightOf="@+id/icl_cv_headimg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp">
+
+        <TextView
+        android:id="@+id/icl_tv_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="14sp"
+            android:textColor="#f55"
+        android:text="小航航"/>
+
+        <TextView
+            android:layout_alignTop="@+id/icl_tv_nickname"
+            android:id="@+id/icl_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textSize="12sp"
+            android:textColor="#cecece"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="小航航"/>
+
+        <TextView
+            android:layout_below="@+id/icl_tv_time"
+            android:id="@+id/icl_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:layout_marginTop="5dp"
+            android:maxLines="3"
+            android:layout_marginRight="10dp"
+            android:text="小航航"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_toRightOf="@id/icl_cv_headimg"
+        android:layout_below="@+id/icl_rl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:background="#cecece" />
+
+
+</RelativeLayout>

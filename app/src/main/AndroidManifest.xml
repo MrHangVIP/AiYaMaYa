@@ -41,8 +41,13 @@
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.activity.StateSelectActivity" />
         <activity android:name=".ui.activity.MyselfActivity" />
+        <activity android:name=".ui.activity.NewsDetailActy" />
         <activity android:name=".ui.activity.WebViewActivity"></activity>
         <activity android:name=".ui.activity.ToolsActivity"></activity>
+        <activity android:name=".ui.activity.ToolsOneActivity"></activity>
+        <activity android:name=".ui.activity.ToolsThreeActivity"></activity>
+        <activity android:name=".ui.activity.ToolsFiveActivity"></activity>
+        <activity android:name=".ui.activity.XinZuoActivity"></activity>
         <activity android:name=".ui.activity.ToolsDetailActivity"></activity>
 
 

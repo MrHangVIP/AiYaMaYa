@@ -1,11 +1,8 @@
 package zsx.com.aiyamaya.ui.activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -23,7 +20,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.google.gson.internal.ObjectConstructor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,18 +28,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.adapter.CommentAdapter;
-import zsx.com.aiyamaya.adapter.CommunicateRecyclerViewAdapter;
-import zsx.com.aiyamaya.adapter.HomeArticleAdapter;
 import zsx.com.aiyamaya.api.OkHttpHelp;
-import zsx.com.aiyamaya.item.ArticleItem;
 import zsx.com.aiyamaya.item.CommentItem;
 import zsx.com.aiyamaya.item.EmojiItem;
 import zsx.com.aiyamaya.item.PostBarItem;
@@ -51,12 +42,12 @@ import zsx.com.aiyamaya.item.ResultItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.ui.widget.CircleImageView;
 import zsx.com.aiyamaya.ui.widget.CusListView;
-import zsx.com.aiyamaya.ui.widget.MyFullLayoutManager;
 import zsx.com.aiyamaya.ui.widget.MyRichView;
 import zsx.com.aiyamaya.util.Constant;
 import zsx.com.aiyamaya.util.DateUtil;
 import zsx.com.aiyamaya.util.MyUtil;
 import zsx.com.aiyamaya.util.ProgressDialogUtil;
+import zsx.com.aiyamaya.util.SpfUtil;
 
 /**
  * Created by moram on 2016/9/22.
@@ -99,8 +90,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
         setTitle("帖子详情");
         cusListView = (CusListView) findViewById(R.id.acd_lv_listview);
         commentRL = (LinearLayout) findViewById(R.id.comment);
-        comment_num = (TextView) findViewById(R.id.comment_num3);
-
+        comment_num = (TextView) findViewById(R.id.comment_num2);
         myRichView = cusListView.getMyRichView();
         //richView中的View
         //titleView中的View
@@ -108,10 +98,8 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
         nickNameTV = (TextView) cusListView.getTitleView().findViewById(R.id.ldht_tv_nickname);
         titleTV = (TextView) cusListView.getTitleView().findViewById(R.id.ldht_tv_title);
         timeTV = (TextView) cusListView.getTitleView().findViewById(R.id.ldht_tv_time);
-
         showView = cusListView.getShowView();
         comment_num3 = (TextView) showView.findViewById(R.id.comment_num3);
-
         //底部评论编辑
         comment_layout = (RelativeLayout) findViewById(R.id.comment_layout);
         comment_layout.setVisibility(View.GONE);
@@ -127,7 +115,8 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
     protected void initData() {
         postBarItem = (PostBarItem) getIntent().getSerializableExtra("postdetail");
         getData();
-        cusListView.setAdapter(new CommentAdapter(this,commentList));
+        commentAdapter=new CommentAdapter(this,commentList);
+        cusListView.setAdapter(commentAdapter);
         nickNameTV.setText(postBarItem.getNickName());
         titleTV.setText(postBarItem.getTitle());
         timeTV.setText(postBarItem.getCreateTime());
@@ -146,6 +135,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
             public void onClick(View v) {
                 //显示底部
                 comment_layout.setVisibility(View.VISIBLE);
+                commentET.setFocusable(true);
             }
         });
 
@@ -267,9 +257,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
                 myRichView.createImageView(Constant.DEFAULT_URL + Constant.IMAGE_URL + url);
                 imageCount++;
             }
-
         }
-
     }
 
 
@@ -316,7 +304,7 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
         ProgressDialogUtil.showProgressDialog(mContext,true);
         Map<String,String> params =new HashMap<>();
         params.put("postbarId",postBarItem.getPostbarId()+"");
-        params.put("userPhone",Constant.LOGIN_USERPHONE);
+        params.put("userPhone", SpfUtil.getString(Constant.LOGIN_USERPHONE, ""));
         params.put("content",content);
         OkHttpHelp<ResultItem> okHttpHelp=OkHttpHelp.getInstance();
         okHttpHelp.httpRequest("",Constant.WRITE_COMMENT,params, new ResponseListener<ResultItem>() {
@@ -330,12 +318,12 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
                         comment.setContent(content);
                         comment.setPostbarId(postBarItem.getPostbarId());
                         comment.setCreateTime(DateUtil.getCurrentDate());
-                        comment.setHeadUrl(postBarItem.getHeadUrl());
-                        comment.setNickName(postBarItem.getNickName());
-                        comment.setUserPhone(postBarItem.getUserPhone());
-                        List<CommentItem> commentList=new ArrayList<CommentItem>();
-                        commentList.add(comment);
-                        commentAdapter.appendData(commentList);
+                        comment.setHeadUrl(BaseApplication.getAPPInstance().getmUser().getHeadUrl());
+                        comment.setNickName(BaseApplication.getAPPInstance().getmUser().getNickName());
+                        comment.setUserPhone(BaseApplication.getAPPInstance().getmUser().getUserPhone());
+                        commentAdapter.appendData(comment);
+                        cusListView.setSelection(0);
+                        notifyData();
                     }
                 }
             }
@@ -373,15 +361,9 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
                         CommentItem comment = new Gson().fromJson(jsonArray.get(i).toString(), CommentItem.class);
                         commentList.add(comment);
                     }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                        }
-                    });
                     commentAdapter=new CommentAdapter(mContext, commentList);
                     cusListView.setAdapter(commentAdapter);
-
+                    notifyData();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -402,6 +384,13 @@ public class PostDetailActivity extends BaseActivity implements AbsListView.OnSc
         InputMethodManager imm = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+    }
+
+    private void notifyData(){
+        if(commentAdapter!=null){
+            comment_num.setText(commentAdapter.getCount()+"");
+            comment_num3.setText(commentAdapter.getCount()+"");
+        }
     }
 }
 

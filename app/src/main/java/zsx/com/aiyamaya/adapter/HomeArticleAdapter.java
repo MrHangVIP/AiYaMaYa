@@ -19,6 +19,7 @@ import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.item.ArticleItem;
 import zsx.com.aiyamaya.item.NewsDataItem;
 import zsx.com.aiyamaya.ui.activity.BaseActivity;
+import zsx.com.aiyamaya.ui.activity.NewsDetailActy;
 import zsx.com.aiyamaya.ui.activity.WebViewActivity;
 import zsx.com.aiyamaya.util.Constant;
 
@@ -57,13 +58,21 @@ public class HomeArticleAdapter extends RecyclerView.Adapter<HomeArticleAdapter.
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final View view = holder.mView;
         if (articleList != null) {
-            ArticleItem articleItem = articleList.get(position);
+            final ArticleItem articleItem = articleList.get(position);
             Glide.with(mContext)
                     .load(Constant.DEFAULT_URL + Constant.IMAGE_URL + articleItem.getImageUrl())
                     .into(holder.imageIV);
             holder.titleTV.setText(articleItem.getTitle());
             holder.readNumTV.setText("阅读量：" + articleItem.getReadnum());
             holder.contentTV.setText(articleItem.getContent());
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("newsdetail", articleList.get(position));
+                    ((BaseActivity) mContext).jumpToNext(NewsDetailActy.class, bundle);
+                }
+            });
         }
         if (newsList != null) {
             view.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +88,6 @@ public class HomeArticleAdapter extends RecyclerView.Adapter<HomeArticleAdapter.
                     .load(articleItem.getThumbnail_pic_s())
                     .into(holder.imageIV);
             holder.titleTV.setText(articleItem.getTitle());
-//            holder.readNumTV.setText("阅读量："+articleItem.getReadnum());
-//            holder.contentTV.setText(articleItem.getContent());
         }
 
     }

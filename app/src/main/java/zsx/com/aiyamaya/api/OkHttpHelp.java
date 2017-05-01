@@ -87,14 +87,24 @@ public class OkHttpHelp<T>  {
             public void run() {
                 mOkHttpClient.newCall(request).enqueue(new Callback() {
                     @Override
-                    public void onFailure(Call call, IOException e) {
+                    public void onFailure(Call call, final IOException e) {
                         e.printStackTrace();
-                        listener.onFailed(e.toString());
+                        MyUtil.runOnUI(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onFailed(e.toString());
+                            }
+                        });
                     }
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
+                    public void onResponse(Call call, final Response response) throws IOException {
                         if (!response.isSuccessful()) {
-                            listener.onFailed(response.toString());
+                            MyUtil.runOnUI(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.onFailed(response.toString());
+                                }
+                            });
                             throw new IOException("Unexpected code " + response);
                         }
                         try {
@@ -110,7 +120,12 @@ public class OkHttpHelp<T>  {
                             });
                         } catch (final JSONException e) {
                             e.printStackTrace();
-                            listener.onFailed(e.toString());
+                            MyUtil.runOnUI(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.onFailed(e.toString());
+                                }
+                            });
                         }
                     }
                 });

@@ -45,8 +45,8 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         theme = setActivityTheme();
         setThemes();
         setToolbar(view);
-        initData();
         initView(view);
+        initData();
         initEvent();
         if (view != null)
             return view;

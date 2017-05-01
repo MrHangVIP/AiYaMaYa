@@ -25,10 +25,12 @@
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
+            <ImageView
+                android:id="@+id/ac_iv_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_wel1"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -44,12 +46,11 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/ac_ry_post"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ac_vp_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.FloatingActionButton
         android:onClick="checkin"

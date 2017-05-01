@@ -19,12 +19,9 @@ public class ToolsActivity extends BaseActivity {
 
     @Override
     protected void findViews() {
-        findViewById(R.id.at_btn_tools1).setOnClickListener(this);
-        findViewById(R.id.at_btn_tools2).setOnClickListener(this);
-        findViewById(R.id.at_btn_tools3).setOnClickListener(this);
-        findViewById(R.id.at_btn_tools4).setOnClickListener(this);
-        findViewById(R.id.at_btn_tools5).setOnClickListener(this);
-        findViewById(R.id.at_btn_tools6).setOnClickListener(this);
+        findViewById(R.id.at_tv_jkpc).setOnClickListener(this);
+        findViewById(R.id.at_tv_xzbb).setOnClickListener(this);
+        findViewById(R.id.at_tv_rl).setOnClickListener(this);
     }
 
     @Override
@@ -40,31 +37,22 @@ public class ToolsActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        int  layoutId=R.layout.activity_tools_one;
         switch (v.getId()){
-            case R.id.at_btn_tools1:
-                layoutId=R.layout.activity_tools_one;
+            case R.id.at_tv_jkpc:
+                Intent intent1=new Intent(mContext,ToolsOneActivity.class);
+                startActivity(intent1);
                 break;
-            case R.id.at_btn_tools2:
-                layoutId=R.layout.activity_tools_two;
+            case R.id.at_tv_xzbb:
+                Intent intent2=new Intent(mContext,ToolsFiveActivity.class);
+                startActivity(intent2);
                 break;
-            case R.id.at_btn_tools3:
-                layoutId=R.layout.activity_tools_three;
-                break;
-            case R.id.at_btn_tools4:
-                layoutId=R.layout.activity_tools_four;
-                break;
-            case R.id.at_btn_tools5:
-                layoutId=R.layout.activity_tools_five;
-                break;
-            case R.id.at_btn_tools6:
-                layoutId=R.layout.activity_tools_six;
+            case R.id.at_tv_rl:
+                Intent intent3=new Intent(mContext,ToolsThreeActivity.class);
+                startActivity(intent3);
                 break;
             default:
                 break;
         }
-        Intent intent=new Intent(mContext,ToolsDetailActivity.class);
-        intent.putExtra("layoutId",layoutId);
-        startActivity(intent);
+
     }
 }

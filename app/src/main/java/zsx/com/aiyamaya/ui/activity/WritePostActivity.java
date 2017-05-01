@@ -155,8 +155,8 @@ public class WritePostActivity extends BaseActivity {
                 int id = item.getItemId();
                 if (id == R.id.toolbar_submit) {
                     String title=titleET.getText().toString();
-                    if("".equals(title)||title.length()<10){
-                        toast("请输入标题，并且紫薯不少于10个");
+                    if("".equals(title)||title.length()<1){
+                        toast("标题不能为空~");
                         return true;
                     }
                     ProgressDialogUtil.showProgressDialog(WritePostActivity.this,true);

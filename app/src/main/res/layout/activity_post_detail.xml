@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_main_bg"
-    android:paddingLeft="5dp">
+    android:background="@drawable/img_main_bg">
 
     <include
         android:id="@+id/appbar"
@@ -15,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/appbar"
         android:background="#eee"
+        android:divider="@null"
         android:scrollbars="none" />
 
     <LinearLayout
@@ -82,7 +82,7 @@
                     android:src="@drawable/base_item_comment_icon_black" />
 
                 <TextView
-                    android:id="@+id/comment_num3"
+                    android:id="@+id/comment_num2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -114,11 +114,5 @@
         layout="@layout/dialog_comment_layout"
         android:visibility="gone"
         />
-
-    <!--<include layout="@layout/comment_bottom_layout"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="50dp"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:visibility="gone"/>-->
 
 </RelativeLayout>

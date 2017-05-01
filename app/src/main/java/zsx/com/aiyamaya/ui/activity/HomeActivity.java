@@ -6,6 +6,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +19,7 @@ import zsx.com.aiyamaya.BaseApplication;
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.api.OkHttpHelp;
 import zsx.com.aiyamaya.item.ResultItem;
+import zsx.com.aiyamaya.item.UserItem;
 import zsx.com.aiyamaya.listener.ResponseListener;
 import zsx.com.aiyamaya.ui.dialog.ShareDialog;
 import zsx.com.aiyamaya.ui.fragment.HomeArticleFragment;
@@ -89,11 +96,57 @@ public class HomeActivity extends BaseActivity {
                 break;
 
             case R.id.iv_settings:
-
+                jumpToNext(SettingActivity.class);
                 break;
 
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUserData();
+    }
+
+    private void getUserData() {
+        Map<String, String> params = new HashMap<>();
+        params.put("token", SpfUtil.getString(Constant.TOKEN, ""));
+        params.put("userPhone", SpfUtil.getString(Constant.LOGIN_USERPHONE, ""));
+        OkHttpHelp<ResultItem> httpHelp = OkHttpHelp.getInstance();
+        httpHelp.httpRequest("", Constant.GET_USER_URL, params, new ResponseListener<ResultItem>() {
+                    @Override
+                    public void onSuccess(ResultItem object) {
+                        if ("fail".equals(object.getResult())) {
+                            if ("token error".equals(object.getData())) {
+//                                tokenError();
+                                toast("请重新登陆");
+//                                finish();
+                            }
+                        } else {
+                            JSONObject userJson = null;
+                            try {
+                                userJson = new JSONObject(object.getData());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            UserItem userItem = (new Gson()).fromJson(userJson.toString(), UserItem.class);
+                            BaseApplication.getAPPInstance().setmUser(userItem);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(String message) {
+
+                    }
+
+                    @Override
+                    public Class getEntityClass() {
+                        return ResultItem.class;
+                    }
+                }
+
+        );
     }
 
     @Override

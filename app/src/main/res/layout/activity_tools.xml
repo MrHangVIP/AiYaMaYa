@@ -9,58 +9,40 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/at_btn_tools1"
-            android:layout_weight="1.0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="tools1"/>
-
-        <Button
-            android:id="@+id/at_btn_tools2"
-            android:layout_weight="1.0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="tools2"/>
-
-        <Button
-            android:id="@+id/at_btn_tools3"
-            android:layout_weight="1.0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="tools3"/>
+        <TextView
+            android:id="@+id/at_tv_jkpc"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:text="健康评测"
+            android:textSize="20sp"
+            android:drawableRight="@drawable/jkpc"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"/>
 
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/at_tv_xzbb"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:text="星座宝宝"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/xzbb"
+            android:layout_marginTop="10dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/at_btn_tools4"
-            android:layout_weight="1.0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="tools4"/>
-
-        <Button
-            android:id="@+id/at_btn_tools5"
-            android:layout_weight="1.0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="tools5"/>
-
-        <Button
-            android:id="@+id/at_btn_tools6"
-            android:layout_weight="1.0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="tools6"/>
-
-
+        <TextView
+            android:id="@+id/at_tv_rl"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:text="在线日历"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/rl"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
 

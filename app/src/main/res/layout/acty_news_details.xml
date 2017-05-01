@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+   <include layout="@layout/toolbar"/>
+    
+    <ScrollView          
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout        
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="20dp"
+        android:orientation="vertical">
+     <TextView
+        android:id="@+id/and_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 女脸色看协和妇科死了上课了成都看出来了首次"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+     
+     
+     <RelativeLayout 
+         android:layout_width="fill_parent"
+         android:layout_height="50dp"
+         android:orientation="horizontal">
+     
+      <TextView
+        android:id="@+id/and_tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="2015-10-03" />
+      
+      
+      <TextView
+        android:id="@+id/and_tv_read"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="阅读（10）" />
+      
+      </RelativeLayout>
+      
+     <ImageView 
+         android:id="@+id/and_iv_image"
+         android:layout_width="match_parent"
+         android:layout_height="210dp"
+         android:src="@drawable/img_wel1"
+         android:scaleType="fitXY"/>
+      
+     <TextView
+         android:layout_marginTop="10dp"
+        android:id="@+id/and_tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 女脸色看协和妇科死了上课了成都看出来了首次女脸色看协和妇科死了上课了成都看出来了首次
+     
+        
+        女脸色看协和妇科死了上课了成都看出来了首次女脸色看协和妇科死了上课了成都看出来了首次女脸色看协和妇科死了上课了成都看出来了首次女脸色看协和妇科死了上课了成都看出来了首次
+        
+        
+        女脸色看协和妇科死了上课了成都看出来了首次"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+      
+      </LinearLayout>
+      </ScrollView>
+
+</LinearLayout>

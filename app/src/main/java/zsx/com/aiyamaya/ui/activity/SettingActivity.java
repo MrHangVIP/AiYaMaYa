@@ -102,6 +102,10 @@ public class SettingActivity extends BaseActivity {
                 goToNext(LoginActivity.class);
 //                startActivityForResult(new Intent(SettingActivity.this,LoginActivity.class),100);
                 break;
+
+            case R.id.asl_ll_update:
+                toast("当前已是最新版本");
+                break;
         }
     }
 

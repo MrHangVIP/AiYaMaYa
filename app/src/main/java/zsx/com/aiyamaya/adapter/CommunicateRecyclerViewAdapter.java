@@ -183,10 +183,10 @@ public class CommunicateRecyclerViewAdapter extends RecyclerView.Adapter<Communi
             public void onClick(View v) {
                 if("0".equals(postBarItem.getHasLike()) ){
                     postBarList.get(position).setHasLike("1");
-                    postBarList.get(position).setLikeNums(Integer.getInteger(postBarList.get(position).getLikeNums(),0)+1+"");
+                    postBarList.get(position).setLikeNums(Integer.parseInt(postBarList.get(position).getLikeNums())+1+"");
                 }else{
                     postBarList.get(position).setHasLike("0") ;
-                    postBarList.get(position).setLikeNums(Integer.getInteger(postBarList.get(position).getLikeNums(),1)-1+"");
+                    postBarList.get(position).setLikeNums(Integer.parseInt(postBarList.get(position).getLikeNums())-1+"");
                 }
                 notifyDataSetChanged();
                 doLikeAction(postBarItem.getPostbarId()+"");

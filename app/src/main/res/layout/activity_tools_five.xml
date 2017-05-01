@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:circleView="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_main_bg"
@@ -19,70 +18,43 @@
         android:layout_weight="1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-     
-  <!--<com.example.layoutdemo.CircleView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            circleView:roundedimageview_border_inside_color="#0f0"
-             circleView:roundedimageview_border_outside_color="#ccc"
-            >
-        </com.example.layoutdemo.CircleView>  -->
-      <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+        
+      <zsx.com.aiyamaya.ui.widget.RoundImageView
+          android:id="@+id/shuiping"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/shuiping"
+          android:layout_marginTop="30dp"
+          android:scaleType="centerCrop"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-     <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+    
+      <zsx.com.aiyamaya.ui.widget.RoundImageView
+         android:id="@+id/shuangyu"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/shuangyu"
+         android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-     <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+    
+      <zsx.com.aiyamaya.ui.widget.RoundImageView
+         android:id="@+id/baiyang"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/baiyang"
+         android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-      <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+  
+       <zsx.com.aiyamaya.ui.widget.RoundImageView
+          android:id="@+id/tianxie"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/tianxie"
+          android:layout_marginTop="30dp"
+          android:scaleType="centerCrop"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
+   
    </LinearLayout>
    
     <!-- 第二竖排 -->
@@ -93,69 +65,43 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
      
-  <!--<com.example.layoutdemo.CircleView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            circleView:roundedimageview_border_inside_color="#0f0"
-             circleView:roundedimageview_border_outside_color="#ccc"
-            >
-        </com.example.layoutdemo.CircleView>  -->
-      <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+
+       <zsx.com.aiyamaya.ui.widget.RoundImageView
+          android:id="@+id/jinniu"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/jinniu"
+          android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-     <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+    
+      <zsx.com.aiyamaya.ui.widget.RoundImageView
+         android:id="@+id/shuangzi"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/shuangzi"
+         android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-     <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+     
+      <zsx.com.aiyamaya.ui.widget.RoundImageView
+         android:id="@+id/juxie"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/juxie"
+         android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-      <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+    
+       <zsx.com.aiyamaya.ui.widget.RoundImageView
+          android:id="@+id/shizi"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/shizi"
+          android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
+    
    </LinearLayout>
    
     <!-- 第三竖排 -->
@@ -166,69 +112,43 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
      
-  <!--<com.example.layoutdemo.CircleView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            circleView:roundedimageview_border_inside_color="#0f0"
-             circleView:roundedimageview_border_outside_color="#ccc"
-            >
-        </com.example.layoutdemo.CircleView>  -->
-      <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+  
+       <zsx.com.aiyamaya.ui.widget.RoundImageView
+          android:id="@+id/chunv"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/chunv"
+          android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-     <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+    
+      <zsx.com.aiyamaya.ui.widget.RoundImageView
+         android:id="@+id/tiancheng"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/tiancheng"
+         android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-     <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+   
+      <zsx.com.aiyamaya.ui.widget.RoundImageView
+         android:id="@+id/shezhou"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/sheshou"
+          android:layout_marginTop="30dp"
+         android:scaleType="centerCrop"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
-      <ImageView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baby"
-          android:layout_marginTop="15dp"
+     
+       <zsx.com.aiyamaya.ui.widget.RoundImageView
+          android:id="@+id/mojie"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          android:src="@drawable/mojie"
+          android:scaleType="centerCrop"
+          android:layout_marginTop="30dp"
           android:layout_marginLeft="25dp"/>
-      <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="备 孕"
-          android:textSize="15dp"
-          android:textColor="#555555"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="50dp"/>
+      
    </LinearLayout>
      
  

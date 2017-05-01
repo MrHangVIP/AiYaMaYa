@@ -1,6 +1,7 @@
 package zsx.com.aiyamaya.ui.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -8,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import zsx.com.aiyamaya.R;
 import zsx.com.aiyamaya.util.Constant;
+import zsx.com.aiyamaya.util.Util;
 
 /**
  * @discription
@@ -51,7 +55,10 @@ public class CusListView extends ListView {
         myRichView=new MyRichView(context);
         titleView= LayoutInflater.from(context).inflate(R.layout.layout_detai_head_title,null);
         contentHead.addView(titleView);
-        contentHead.addView(myRichView);
+
+        LinearLayout.LayoutParams richViewParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        richViewParams.setMargins(Util.toDip(5),0,Util.toDip(5),0);
+        contentHead.addView(myRichView,richViewParams);
 
         LinearLayout titleHead=new LinearLayout(context);
         showView= LayoutInflater.from(context).inflate(R.layout.comment_bottom_layout,null);
@@ -65,6 +72,19 @@ public class CusListView extends ListView {
         headLayout.addView(titleHead);
 
         addHeaderView(headLayout);
+
+        RelativeLayout layout=new RelativeLayout(context);
+
+        TextView textView = new TextView(context);
+        RelativeLayout.LayoutParams footParams =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT
+                , RelativeLayout.LayoutParams.WRAP_CONTENT);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        textView.setText("快来发表你的评论吧");
+        textView.setTextSize(15);
+        textView.setTextColor(Color.GRAY);
+        layout.setPadding(0,100,0,100);
+        layout.addView(textView,footParams);
+        addFooterView(layout);
 
     }
 

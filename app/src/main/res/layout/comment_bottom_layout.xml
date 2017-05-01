@@ -52,6 +52,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginRight="20dip"
             android:layout_toLeftOf="@+id/comment_bottom_share3"
+            android:layout_alignParentRight="true"
             android:orientation="horizontal">
 
             <ImageView
@@ -59,7 +60,7 @@
                 android:layout_width="25dip"
                 android:layout_height="25dip"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="5dip"
+                android:layout_marginRight="8dip"
                 android:src="@drawable/base_item_comment_icon_black" />
 
             <TextView
@@ -79,6 +80,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
+            android:visibility="gone"
             android:src="@drawable/base_item_share_icon_black" />
 
 

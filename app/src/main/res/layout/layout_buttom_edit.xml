@@ -32,7 +32,8 @@
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_weight="1.0"
-            android:src="@drawable/post_photo" />
+            android:src="@drawable/post_photo"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
